@@ -1,0 +1,2 @@
+# Tilavaraus
+Tilavarausjärjestelmä Django-projektina
