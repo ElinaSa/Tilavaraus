@@ -21,5 +21,5 @@ from tilavaraus import views as Tilavaraus
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('testi/', admin.site.urls),
-    path('tilavaraus/',Tilavaraus.Koti),
+    path('tilavaraus/',Tilavaraus.Koti), 
 ]
