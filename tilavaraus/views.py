@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Reservation
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
-    #return redirect('booking_list')
-    return HttpResponse("Raseko Goes Virtual! Tervetuloa tilavarausjärjestelmään")
+    return redirect('booking_list')
+    #return HttpResponse("Raseko Goes Virtual! Tervetuloa tilavarausjärjestelmään")
 
+def login(request):
+    return redirect('login')
+
+@login_required
 def booking_list(request):
     #return HttpResponse("Tässä näkyvät varaukset")
     reservations=Reservation.objects.all()

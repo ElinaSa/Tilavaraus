@@ -1,12 +1,25 @@
-{% extends "tilavaraus/base.html" %}
+(% load static %)
 
-{% block title %} {{}} {% endblock %}
+<!DOCTYPE html>
+<html lang="'fi">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Kirjautuminen</title>
+    <link rel="stylesheet" href="{% static 'tilavaraus/style.css' %}">
+</head>
+
+<body>
+
 <h2>Kirjaudu sisään</h2>
+
 <form method="post">
     {% csrf_token %}
     {{ form.as_p}}
     <button type="submit">Kirjaudu</button>
 </form>
-{% endblock %}
+
+</body>
+
+</html>
