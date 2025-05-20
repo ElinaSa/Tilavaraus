@@ -8,7 +8,8 @@ def home(request):
     return HttpResponse("Raseko Goes Virtual! Tervetuloa tilavarausjärjestelmään")
 
 def booking_list(request):
-    return HttpResponse("Tässä näkyvät varaukset")
+    #return HttpResponse("Tässä näkyvät varaukset")
+    return render(request, 'tilavaraus/booking_list.html')
 
 def booking_detail(request, booking_id):
     return HttpResponse(f"Varauksen ID: {booking_id}")
