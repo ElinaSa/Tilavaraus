@@ -9,7 +9,8 @@ def home(request):
 
 def booking_list(request):
     #return HttpResponse("Tässä näkyvät varaukset")
-    return render(request, 'tilavaraus/booking_list.html')
+    reservations=Reservation.objects.all()
+    return render(request, 'tilavaraus/booking_list.html',{'reservations':reservations})
 
 def booking_detail(request, booking_id):
     return HttpResponse(f"Varauksen ID: {booking_id}")

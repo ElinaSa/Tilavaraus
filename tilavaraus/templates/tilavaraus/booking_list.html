@@ -7,6 +7,18 @@
 </head>
 <body>
     <h1>Varauslista</h1>
-    <p>Tähän tulee lista varauksista.</p>
+    <ul>
+        {% for reservation in reservations %}
+            <li>
+                {{ reservation.title }} - 
+                {% if reservation.completed %} 
+                    Valmis
+                {% else %}
+                    Ei ole valmis
+                {% endif %}
+            
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
