@@ -123,6 +123,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
 
+print(BASE_DIR)
+print(STATIC_ROOT) #lisätty printkomennot 
+
 STATICFILES_DIRS = [
    BASE_DIR / "static",
 ]

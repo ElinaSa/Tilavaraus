@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import home, login, booking_list, booking_detail
+from rest_framework import permissions
 
 urlpatterns = [
     path('',home, name='home'),
