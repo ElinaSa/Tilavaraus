@@ -1,37 +1,33 @@
-
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varauslista</title>    
-    <link rel="stylesheet" href="{% static 'tilavaraus/style.css' %}">
-</head>
-<body>
-    <h1>Varauslista</h1>
-
-    <p>Tervetuloa, {{ user.username}}!
-
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Kirjaudu ulos</button>
-        </form>
-    </p>
-    
-    <ul>
-        {% for reservation in reservations %}
-            <li>
-                {{ reservation.title }} - 
-                {% if reservation.completed %} 
-                    Valmis
-                {% else %}
-                    Ei ole valmis
-                {% endif %}
-            
-            </li>
+TODO muokattava loppuun, pohja kopioitu taskplannerista
+{% extends "tilavaraus/base.html" %}
+ 
+{% block title %}TilavarausjärjestelmäBookingList{% endblock %}
+ 
+{% block content %}
+    <h1>TilavarausjärjestelmäBookingList</h1>
+ 
+    <p>Tervetuloa, {{ user.username }}!</p>
+ 
+           
+    <h2>Varattava tila</h2>
+    <div class="task-container d-flex flex-wrap gap-3">
+        {% for task_class, tasks in tasks_by_class.items %}
+            <div class="task-column border p-3">
+                <h3>{{ task_class.title }}</h3>
+                {% for task in tasks %}
+                    <div class="task-card p-2 border rounded">
+                        <h4>{{ task.title }}</h4>
+                        <p>kuvaus: {{ task.description }}</p>
+                       
+                       
+                       
+                       
+                       
+                       
+                        <p><a href="{% url 'booking_detail' task.id %}">{{ task.title }}</a></p>
+                    </div>
+                {% endfor %}
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+{% endblock %}
