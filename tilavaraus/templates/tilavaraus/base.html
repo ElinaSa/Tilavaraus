@@ -2,8 +2,10 @@
 <html lang="fi">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tilavaraus{% endblock %}</title>
-    <link rel="stylesheet" href="{% tilavaraus css/style.css}">
+
+    <link rel="stylesheet" href="{% static 'tilavaraus/style.css' %}"> 
 </head>
 
 <body>
@@ -11,8 +13,7 @@
         <h1>Tilavarausjärjestelmä</h1>
         <nav>
             <a href="/">Etusivu</a>
-            <a href="/varaukset/">Varaukset</a>
-        </nav>
+                   </nav>
     </header>
 
     <main>

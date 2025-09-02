@@ -12,13 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Reservation',
+            name='Space',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=200)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('completed', models.BooleanField(default=False)),
+                ('room', models.CharField(max_length=50)),
+                ('address', models.CharField(max_length=50)),
+                ('location', models.TextField(blank=True, null=True)),
+               
             ],
         ),
     ]
