@@ -5,8 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
-    return redirect('booking_list')
-    #return HttpResponse("Raseko Goes Virtual! Tervetuloa tilavarausjärjestelmään")
+    return redirect('login')
+    #return redirect('booking_list')
+    
 
 def login(request):
     return redirect('login')

@@ -5,14 +5,20 @@
 {% block content %}
     <h1>TilavarausjärjestelmäBookingListH1</h1>
  
-    <p>Tervetuloa, {{ user.username }}!</p>
+    <p>Tervetuloa, {{ user.username }}!
+         <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Kirjaudu ulos</button>
+        </form>
+    </p>
  
            
     <h2>Varattavat tilat</h2>
-    <div class="booking-container d-flex flex-wrap gap-3">
+    <div class="booking-container">
         {% for space_class, rooms in rooms_by_class.items %}
             <div class="booking-column border p-3">
                 <h3>{{ space.room }}</h3>
+                
                                                                                                                                                                                                                             </div>
         {% endfor %}
     </div>
