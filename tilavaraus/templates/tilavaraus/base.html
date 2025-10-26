@@ -1,23 +1,39 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tilavaraus{% endblock %}</title>
-
     <link rel="stylesheet" href="{% static 'tilavaraus/style.css' %}"> 
 </head>
 
 <body>
     <header>
-        <h1>Tilavarausjärjestelmä</h1>
+        <h1>TilavarausjärjestelmäTÄMÄ TEKSTI ON BASESSA</h1>
         <nav>
-            <a href="/">Etusivu</a>
-                   </nav>
+
+            {% if user.is_authenticated %}
+                <span>BASENTervetuloa, {{ user.username }}!</span>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}                 
+                    <button type="submit">BASEKirjaudu ulos TOIMIVA, EI MUOTOILTU</button>                   
+                </form>                       
+            {% else %}
+                <span>BASENTervemenoaEINÄYMISSÄÄN, {{ user.username }}!</span>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <button type="submit">BASEKirjaudu sisään</button>
+                </form>                                     
+            {% endif %}          
+        </nav>
     </header>
 
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+        <!-- Sivukohtainen sisältö tähän -->
+        {% endblock %}
     </main>
 
     <footer>

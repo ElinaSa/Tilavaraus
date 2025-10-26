@@ -53,13 +53,17 @@ body h3 {
     color: white;   
 }
  
-.logout-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: left;
-    font-size: 24px;
+
+.logout-button {
+    background-color: #1b3259;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: normal;
+    margin: 0 auto;
+    font-size: 16px;
+    color: white;   
 }
+
  
 .logout-card {
     background-color: lightgoldenrodyellow;
@@ -69,20 +73,6 @@ body h3 {
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 500px;
     margin: 15px;
-}
-
-.logout-card p {
-    font-size: 24px;
-}
-
-.logout-card button {
-    background-color: whitesmoke;
-    padding: 15px;
-    border-radius: 15px;
-    font-weight: normal;
-    margin: 0 auto;
-    font-size: 16px;
-    color: navy;   
 }
 
 .booking-container {
@@ -120,7 +110,6 @@ body h3 {
     font-size: 16px;
 }
  
-
 .booking-detail {
     max-width: 500px;
     margin: 0 auto;

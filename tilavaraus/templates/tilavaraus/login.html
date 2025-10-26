@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="'fi">
 
@@ -18,13 +19,23 @@
 <h2>Kirjaudu sisään tilavarausjärjestelmään</h2>
 
 <div class="login-container">
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <div class="login-container button"> 
-    <button type="submit">Kirjaudu</button>
-    </div>
-</form>
+   
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p}}
+                
+        <a href="reservations.html">
+        <div class="login-container button"> 
+        <button type="submit">Kirjaudu</button></a>
+         </div>
+                
+    </form>
+
+    {% if form.errors %}
+        <p style="color: red;">Tarkista käyttäjätunnus ja salasana.</p>
+    {% endif %}
+
+    
 </div>
 </body>
 

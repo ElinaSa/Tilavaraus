@@ -12,6 +12,13 @@ def home(request):
 def login(request):
     return redirect('login')
 
+def logout(request):
+    return redirect('logout')
+
+
+def reservations(request):
+    return redirect('reservations')
+
 def booking_list(request):
     return HttpResponse("Tässä näkyvät varaukset")
 
