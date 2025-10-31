@@ -15,6 +15,8 @@ def login(request):
 def logout(request):
     return redirect('logout')
 
+def testi(request):
+    return redirect('testi')
 
 def reservations(request):
     return redirect('reservations')

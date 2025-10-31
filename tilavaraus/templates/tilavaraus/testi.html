@@ -1,0 +1,57 @@
+{% extends "tilavaraus/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="'fi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testisivu</title>
+    <link rel="stylesheet" href="{% static 'tilavaraus/style.css' %}">
+</head>
+
+{% block title %}Testisivu{% endblock %}
+{% block content %}
+<body>
+
+    <h1>Joku otsikko</h1>
+    <p class="teksti">Tässä on testisivun tekstiä.</p>
+
+    <!-- Tähän on kopitu basesta nappulat navin sisällä ja muokattu loginin muotoilujen mukaisesti-->
+     <!-- jos nappulan muotoiluksi vaihtaa logout-button, muotoilu menee oudoksi-->
+    <nav>
+    {% if user.is_authenticated %}
+        <span>TESTINTervetuloa, {{ user.username }}!</span>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %} 
+            <a href="reservations.html">
+            <div class="logout-container-button"> 
+            <button type="submit">Kirjaudu ulos</button></a>
+            </div>                    
+            <!-- <button type="submit">TESTINKirjaudu ulos TOIMIVA,Ei muotoiltu, EI PALAUDU</button>                    -->
+        </form>                       
+    {% else %}
+        <span>TESTINTervemenoaEINÄYMISSÄÄN, {{ user.username }}!</span>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <button type="submit">TESTINKirjaudu sisään</button>
+        </form>                                     
+    {% endif %}          
+</nav>
+
+<!-- Tähän on kopioitu loginista sisäänkirjautumisnappula formeineen-->
+ <form method="post">
+     {% csrf_token %}
+     {{ form.as_p}}     
+     <a href="reservations.html">
+     <div class="login-container button"> 
+     <button type="submit">Kirjaudu</button></a>
+      </div>        
+ </form>
+
+
+
+</body>
+{% endblock %}
+</html>

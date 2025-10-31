@@ -133,7 +133,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Where user is redirected after login/logout and which url to use for login
-LOGIN_REDIRECT_URL='/reservations/'
+LOGIN_REDIRECT_URL='/reservations/' # TODO:Poista tämä ohjaus kun etusivu on kunnossa
+# LOGIN_REDIRECT_URL='/home/'
 LOGOUT_REDIRECT_URL='/login/'
 LOGIN_URL='/login/'
 
