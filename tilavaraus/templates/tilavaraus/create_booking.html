@@ -1,0 +1,38 @@
+<h1>Tee uusi varaus</h1>
+
+<!-- <form method="POST"> -->
+    <!-- {% csrf_token %} -->
+    <!-- {{ form.as_p }} -->
+    <!-- <button type="submit">Tallenna</button> -->
+<!-- </form> -->
+<!--  -->
+
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        {{ form.room.label }}:<br>
+        {{ form.room }}
+    </p>
+
+    <p>
+        {{ form.reservation_date.label }}:<br>
+        {{ form.reservation_date }}
+    </p>
+
+    <p>
+        {{ form.reservation_begins.label }}:<br>
+        {{ form.reservation_begins }}
+    </p>
+
+    <p>
+        {{ form.reservation_ends.label }}:<br>
+        {{ form.reservation_ends }}
+    </p>
+
+    <p>
+        {{ form.title.label }}:<br>
+        {{ form.title }}
+    </p>
+
+    <button type="submit">Tallenna</button>
+</form>

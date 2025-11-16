@@ -3,8 +3,27 @@
 {% block title %}TilavarausjärjestelmäBookingList{% endblock %}
  
 {% block content %}
-    <h1>TilavarausjärjestelmäBookingListH1</h1>
+    <h1>Varauskalenteri BookingList</h1>
+
+    <a href="{% url 'create_booking' %}">Luo uusi varaus</a>
+
+<ul>
+    {% for booking in reservations %}
+        <li>
+            <strong>{{ reservations.reservation_date }}</strong>  
+            {{ resevations.reservation_begins }} - {{ resevations.reservation_ends }}
+            ({{ reservations.reservation_id }})  
+            – Varaaja: {{ reservations.person.username }}
+        </li>
+    {% empty %}
+        <li>Ei varauksia.</li>
+    {% endfor %}
+</ul>
  
+
+
+
+
     <p>Tervetuloa, {{ user.username }}!
          <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}

@@ -8,6 +8,6 @@ urlpatterns = [
     path('',logout,name='logout'),
     path('',testi,name='testi'),
     path('',reservations,name='reservations'),
-    # path('reservations/',booking_list,name='booking_list'),
+    path('reservations/',booking_list,name='booking_list'),
     # path('reservations/<int:booking_id>/',booking_detail,name='booking_detail'),
 ]
