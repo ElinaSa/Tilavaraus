@@ -35,6 +35,7 @@ def create_booking(request):
         if form.is_valid():
             reservations = form.save(commit=False)
             reservations.user = request.user
+            reservations.person_id = request.user.person_id
             reservations.save()
             return redirect('booking_list')
     else:

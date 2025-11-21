@@ -34,20 +34,20 @@ class Person(models.Model):
     phone = models.CharField(max_length=20)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.person_id} {self.first_name} {self.last_name}"
     
 class Reservations(models.Model):
     reservation_id = models.AutoField(primary_key=True)
 
     room = models.ForeignKey(Space, on_delete=models.CASCADE)
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person_id = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     reservation_date = models.DateField()
     reservation_begins = models.TimeField()
     reservation_ends = models.TimeField()
    
     def __str__(self):
-        return f"{self.reservation_id} {self.room} {self.person}"
+        return f"{self.reservation_id} {self.room} {self.person_id}"
 
 
 

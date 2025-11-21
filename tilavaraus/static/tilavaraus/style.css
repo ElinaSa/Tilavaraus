@@ -19,10 +19,18 @@ body h3 {
     font-size: 15px;
 }
 
+/* header { */
+    /* position: relative; */
+    /* width: 2000px; */
+    /* height: 200px; */
+    /* background-color: #df2070; */
+    /* background-image: image(); */
+/* } */
+
 .header {
     position: relative;
     width: 2000px;
-    height: 50px;
+    height: 70px;
     background-color: #df2070;
 }
 
