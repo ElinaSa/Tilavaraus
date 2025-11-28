@@ -6,26 +6,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Tilavaraus{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'tilavaraus/style.css' %}"> 
+    <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
 </head>
 
-
-<div class="header">
-    <h1>Raseko goes virtual!</h1> 
-    <img src="{% static 'tilavaraus/images/logo_pinkki_vaaka.png'  %}" alt="Rasekon logo">
-
-</div>
-
-
 <body>
+    <!-- Yläbanneri alkaa -->
+    <header class="top-banner">
+        <div class="banner-inner">
+            <img src="{% static 'tilavaraus/images/logo_pinkki_vaaka.png' %}" class="banner-logo" alt="Rasekon logo">
+
+            <div class="banner-text">
+                <h1>Immersiohuoneen varausjärjestelmä BASE</h1>
+                <p>Varaukset - Tilat - Käyttäjät</p>
+            </div>
+        </div>
+    </header>
+    <!-- Yläbanneri loppuu -->
+        
+    <!-- Navigaatiopalkki alkaa -->
+    <nav class="navbar">
+    <ul>
+        <li><a href="{% url 'home' %}">Etusivu</a></li>
+        <li><a href="{% url 'new_reservation' %}">Uusi varaus</a></li>
+        <li><a href="{% url 'booking_list' %}">Varaukset</a></li>
+        
+    </ul>
+    </nav>
+    <!-- Navigaaatiopalkki loppuu -->
+
     <div>
-         <h1> 
-            TilavarausjärjestelmäTÄMÄ TEKSTI ON BASESSA
-        </h1>
         <nav>
 
             {% if user.is_authenticated %}
-                <span>BASENTervetuloa, {{ user.username }}!</span> 
+                <span>BASENTervetuloa, {{ user.username }}</span> 
                 <br>
                 <br>
                 <form method="post" action="{% url 'logout' %}">
@@ -33,7 +46,7 @@
                     <button class="logout-container-button" type="submit">BASEKirjaudu ulos TOIMIVA</button>                   
                 </form>                       
             {% else %}
-                <span>BASENTervemenoaEINÄYMISSÄÄN, {{ user.username }}!</span>
+                <span>BASEN Et ole kirjautuneena!</span>
                 <form method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                     <button type="submit">BASEKirjaudu sisään</button>
@@ -42,12 +55,12 @@
         </nav>
    
 
-    
+    <main>
  
         {% block content %}
         <!-- Sivukohtainen sisältö tähän -->
         {% endblock %}
-
+    </main>
 
     <footer>
         <p>&copy; 2025 Oma Organisaatio</p>

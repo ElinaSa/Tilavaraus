@@ -43,7 +43,7 @@ def create_booking(request):
         form = BookingForm()
 
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
-# Tarkista onko create_bookin oikea osoite tässä
+# TODO:Tarkista onko create_bookin oikea osoite tässä
 # 
 def booking_detail(request):
     return HttpResponse("Tässä näkyvät varauksen yksityiskohdat")
