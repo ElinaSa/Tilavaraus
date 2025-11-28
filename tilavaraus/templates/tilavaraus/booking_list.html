@@ -3,44 +3,19 @@
 {% block title %}TilavarausjärjestelmäBookingList{% endblock %}
  
 {% block content %}
-    <h1>Varauskalenteri BookingList</h1>
-
-    <a href="{% url 'create_booking' %}">Luo uusi varaus</a>
-
 <ul>
-    {% for booking in reservations %}
+    {% for booking in bookings %}
         <li>
-            <strong>{{ reservations.reservation_date }}</strong>  
-            {{ resevations.reservation_begins }} - {{ resevations.reservation_ends }}
-            ({{ reservations.reservation_id }})  
-            – Varaaja: {{ reservations.person.username }}
+            <strong>{{ booking.date }}</strong>  
+            {{ booking.begins }} - {{ booking.ends }}
+            ({{ booking.reservation_id }})  
+            – Varaaja: {{ user }}
         </li>
     {% empty %}
         <li>Ei varauksia.</li>
     {% endfor %}
 </ul>
- 
-
-
-
-
-    <p>Tervetuloa, {{ user.username }}!
-         <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit">Kirjaudu ulos</button>
-        </form>
-    </p>
- 
-           
-    <h2>Varattavat tilat</h2>
-    <div class="booking-container">
-        {% for space_class, rooms in rooms_by_class.items %}
-            <div class="booking-column border p-3">
-                <h3>{{ space.room }}</h3>
-                
-                                                                                                                                                                                                                            </div>
-        {% endfor %}
-    </div>
+</div>
 {% endblock %}
 
 

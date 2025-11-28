@@ -24,12 +24,13 @@ urlpatterns = [
     path('testi/', auth_views.LoginView.as_view(template_name='tilavaraus/testi.html'),name='test'),
     path('base/', auth_views.LoginView.as_view(template_name='tilavaraus/base.html'),name='base'),
     path('home/', auth_views.LoginView.as_view(template_name='tilavaraus/home.html'),name='home'),
-    path('reservations/',auth_views.LoginView.as_view(template_name='tilavaraus/reservations.html'),name='reservations'),
+    path('reservations/', auth_views.LoginView.as_view(template_name='tilavaraus/reservations.html'),name='reservations'),
     path('', include('tilavaraus.urls')), 
     path('accounts/', include('django.contrib.auth.urls')),
-    path('login/',auth_views.LoginView.as_view(template_name='tilavaraus/login.html'),name='login'),
-    path('logout/',auth_views.LogoutView.as_view(next_page='/login/'),name='logout'),
-    path('reservations/', views.booking_list, name='booking_list'),
+    path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'),name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/login/'),name='logout'),
+    path('booking_list/', views.booking_list, name='booking_list'),
     path('reservations/new/', views.create_booking, name='create_booking'),
+    
     
 ]

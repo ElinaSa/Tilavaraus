@@ -13,17 +13,18 @@
     
    <h1>tämä on reservationiin luotua sisältöä. Tarkista mikä sisältö kuuluu etusivulle ja mikä tänne</h1>            
     
-    <h1>Varauskalenteri BookingList</h1>
+    <h1>Varauskalenteri Reservations</h1>
 
     <a href="{% url 'create_booking' %}">Luo uusi varaus</a>
 
     <ul>
         {% for booking in reservations %}
         <li>
-            <strong>{{ reservations.reservation_date }}</strong>  
-            {{ resevations.reservation_begins }} - {{ resevations.reservation_ends }}
-            ({{ reservations.reservation_id }})  
-            – Varaaja: {{ reservations.person.username }}
+            <strong>{{ booking.date }}</strong>  
+            {{ booking.begins }} - {{ booking.ends }}
+            ({{ user.email }})  
+            – Varaaja: {{ booking.username }} 
+            <!-- TODO: Varaaja täytyy tarkistaa, onko username sana oikea tässä -->
         </li>
     {% empty %}
         <li>Ei varauksia.</li>
@@ -43,7 +44,7 @@
    
    
    
-   
+  <!-- TODO:TÄSTÄ ALKAEN SIIVOTTAVAA:  -->
  
            
     <h2>Varattavat tilat</h2>
@@ -71,3 +72,15 @@
 </body>
 {% endblock %}
 </html>
+
+
+<!-- Tähän booking_listista poistetut -->
+<h2>Varattavat tilat</h2>
+<div class="booking-container">
+    {% for space_class, rooms in rooms_by_class.items %}
+        <div class="booking-column border p-3">
+            <h3>{{ space.room }}</h3>
+            
+                                                                                  
+    {% endfor %}
+</div>

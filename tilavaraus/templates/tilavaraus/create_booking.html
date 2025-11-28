@@ -1,4 +1,7 @@
-<h1>Tee uusi varaus</h1>
+<body>
+    <div class="new-reservation">
+
+        <h1>Tee uusi varaus</h1>
 
 <!-- <form method="POST"> -->
     <!-- {% csrf_token %} -->
@@ -7,29 +10,59 @@
 <!-- </form> -->
 <!--  -->
 
-<form method="POST">
-    {% csrf_token %}
-    <p>
-        {{ form.room.label }}:<br>
-        {{ form.room }}
-    </p>
+        <form method="POST">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+            <!--  tämä antaaa saman kuin alalitania mutta mukana muös person id-->
+            <p>
+                {{ form.room.label }}:<br>
+                {{ form.room }}
+            </p>
+        
+            <p>
+                {{ form.date.label }}:<br>
+                {{ form.date }}
+            </p>
+        
+            <p>
+                {{ form.begins.label }}:<br>
+                {{ form.begins }}
+            </p>
+        
+            <p>
+                {{ form.ends.label }}:<br>
+                {{ form.ends }}
+            </p> 
+     
+            <div class="login-container button">          
+            <button type="submit">Tallenna</button>
+            </div> 
+        </form>
+       
+        <a href="{% url 'new_reservation' %}">TÄMÄ LINKKI VIE RESERVATIONSIIN </a>
+        
+        
+        
+    </div>   
 
-    <p>
-        {{ form.reservation_date.label }}:<br>
-        {{ form.reservation_date }}
-    </p>
-
-    <p>
-        {{ form.reservation_begins.label }}:<br>
-        {{ form.reservation_begins }}
-    </p>
-
-    <p>
-        {{ form.reservation_ends.label }}:<br>
-        {{ form.reservation_ends }}
-    </p>
-   
-                  
-    <button type="submit">Tallenna</button>
-
-</form>
+<!-- <div class="login-container"> -->
+<!--     -->
+    <!-- <form method="post"> -->
+        <!-- {% csrf_token %} -->
+        <!-- {{ form.as_p}} -->
+<!--                  -->
+        <!-- <a href="reservations.html"> -->
+        <!-- <div class="login-container button">  -->
+        <!-- <button type="submit">Kirjaudu</button></a> -->
+         <!-- </div> -->
+<!--                  -->
+    <!-- </form> -->
+<!--  -->
+    <!-- {% if form.errors %} -->
+        <!-- <p style="color: red;">Tarkista käyttäjätunnus ja salasana.</p> -->
+    <!-- {% endif %} -->
+<!--  -->
+<!--      -->
+<!-- </div> -->
+<!--  -->
+</body>

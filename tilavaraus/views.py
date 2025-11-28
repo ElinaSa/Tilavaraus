@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Space, UserGroup, Person, Reservations
+from .models import Space, Booking
 from .forms import BookingForm
 from django.contrib.auth.decorators import login_required
 
@@ -21,11 +21,13 @@ def testi(request):
 
 def reservations(request):
     return redirect('reservations')
-# 
+
+# def booking(request):
+    # return redirect('new_reservation')
 # @login_required
 def booking_list(request):
-    bookings = Reservations.objects.all().order_by('reservation_date', 'reservation_begins')
-    return render(request, 'tilavaraus/booking_list.html', {'reservations': bookings})
+    bookings = Booking.objects.all().order_by('date', 'begins')
+    return render(request, 'tilavaraus/booking_list.html', {'bookings': bookings})
     # return HttpResponse("Tässä näkyvät varaukset")
 # 
 # @login_required
@@ -33,25 +35,27 @@ def create_booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            reservations = form.save(commit=False)
-            reservations.user = request.user
-            reservations.person_id = request.user.person_id
-            reservations.save()
+            booking = form.save(commit=False)
+            booking.email = request.user
+            booking.save()
             return redirect('booking_list')
     else:
         form = BookingForm()
 
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
-
+# Tarkista onko create_bookin oikea osoite tässä
+# 
 def booking_detail(request):
     return HttpResponse("Tässä näkyvät varauksen yksityiskohdat")
 
+def new_reservation(request):
+    return HttpResponse("Tässä uusin varaus")
 
 # @login_required
 # def booking_list(request):
     # return HttpResponse("Tässä näkyvät varaukset")
     # reservations=Reservation.objects.all()
     # return render(request, 'tilavaraus/booking_list.html',{'reservations':reservations})
-# 
+
 # def booking_detail(request, booking_id):
     # return HttpResponse(f"Varauksen ID: {booking_id}")

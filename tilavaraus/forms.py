@@ -1,22 +1,22 @@
 from django import forms
-from .models import Reservations, Space, Person
+from .models import Booking, Space
 
 class BookingForm(forms.ModelForm):
 
     # Suomalaiset aikaformaatit
-    reservation_date = forms.DateField(
+    date = forms.DateField(
         input_formats=['%d.%m.%Y', '%Y-%m-%d'],
         label="Valitse päivä",
         widget=forms.DateInput(attrs={'type': 'date'})
     )
 
-    reservation_begins = forms.TimeField(
+    begins = forms.TimeField(
         input_formats=['%H.%M', '%H:%M'],
         label="Aloitusaika",
         widget=forms.TimeInput(attrs={'type': 'time'})
     )
 
-    reservation_ends = forms.TimeField(
+    ends = forms.TimeField(
         input_formats=['%H.%M', '%H:%M'],
         label="Päättymisaika",
         widget=forms.TimeInput(attrs={'type': 'time'})
@@ -29,6 +29,6 @@ class BookingForm(forms.ModelForm):
     )
 
     class Meta:
-        model = Reservations
-        fields = ['room','reservation_date', 'reservation_begins', 'reservation_ends', 'reservation_id', 'person_id']
+        model = Booking
+        fields = ['room','date', 'begins', 'ends']
 
