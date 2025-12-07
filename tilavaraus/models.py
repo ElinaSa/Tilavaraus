@@ -11,7 +11,7 @@ class Space(models.Model): # Varattavat tilat
     location = models.TextField(blank=True, null=True) # Huoneen tarkempi sijainti
 
 def __str__(self):
-    return self.room
+    return f"{self.room}"
       
 # class UserGroup(models.Model): # Käyttäjäryhmä, kuten opiskelijat, opettajat, muu henkilökunta tms.
     # group = models.CharField(max_length=50, primary_key=True) # Käyttäjäryhmä jolle määritelty tietyt oikeudet
