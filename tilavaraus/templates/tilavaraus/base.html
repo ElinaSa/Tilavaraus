@@ -16,8 +16,8 @@
             <img src="{% static 'tilavaraus/images/logo_pinkki_vaaka.png' %}" class="banner-logo" alt="Rasekon logo">
 
             <div class="banner-text">
-                <h1>Immersiohuoneen varausjärjestelmä BASE</h1>
-                <p>Varaukset - Tilat - Käyttäjät</p>
+                <h1>Virtuaalitilojen varausjärjestelmä BASE</h1>
+                <!-- <p>Varaukset - Tilat - Käyttäjät</p> -->
             </div>
         </div>
     </header>
@@ -27,33 +27,31 @@
     <nav class="navbar">
     <ul>
         <li><a href="{% url 'home' %}">Etusivu</a></li>
-        <li><a href="{% url 'new_reservation' %}">Uusi varaus</a></li>
+        <li><a href="{% url 'new_reservation' %}">Tee uusi varaus</a></li>
         <li><a href="{% url 'booking_list' %}">Varaukset</a></li>
+         <nav>
+     {% if user.is_authenticated %}
+         <!-- <span>BASENTervetuloa, {{ user.username }}</span>  -->
+         <!-- <br> -->
+         <!-- <br> -->
+         <form method="post" action="{% url 'logout' %}">
+             {% csrf_token %}                 
+             <button class="logout-container-button" type="submit">BASEKirjaudu ulos TOIMIVA</button>     
+         </form>                       
+     {% else %}
+         <span>BASEN Et ole kirjautuneena!</span>
+         <form method="post" action="{% url 'login' %}">
+             {% csrf_token %}
+             <button type="submit">BASEKirjaudu sisään</button>
+         </form>                                     
+     {% endif %}          
+ </nav>
         
     </ul>
     </nav>
     <!-- Navigaaatiopalkki loppuu -->
 
     <div>
-        <nav>
-
-            {% if user.is_authenticated %}
-                <span>BASENTervetuloa, {{ user.username }}</span> 
-                <br>
-                <br>
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}                 
-                    <button class="logout-container-button" type="submit">BASEKirjaudu ulos TOIMIVA</button>                   
-                </form>                       
-            {% else %}
-                <span>BASEN Et ole kirjautuneena!</span>
-                <form method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <button type="submit">BASEKirjaudu sisään</button>
-                </form>                                     
-            {% endif %}          
-        </nav>
-   
 
     <main>
  
@@ -63,7 +61,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Oma Organisaatio</p>
+        <p>&copy; 2025 ElinaSa</p>
     </footer>
     </div>
 </body>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Space, Booking
 from .forms import BookingForm
+from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -26,8 +27,24 @@ def reservations(request):
     # return redirect('new_reservation')
 # @login_required
 def booking_list(request):
-    bookings = Booking.objects.all().order_by('date', 'begins')
-    return render(request, 'tilavaraus/booking_list.html', {'bookings': bookings})
+    now = timezone.now()
+
+    # käyttäjän varaukset
+    bookings = Booking.objects.filter()
+
+
+    upcoming = bookings.filter(date__gte=now).order_by('begins')
+    past = bookings.filter(date__lt=now).order_by('-begins')
+
+    return render(request, "tilavaraus/booking_list.html", {
+        # 'bookings': bookings,
+        "upcoming": upcoming,
+        "past": past,
+    })
+
+    # bookings = Booking.objects.all().order_by('date', 'begins')
+    # return render(request, 'tilavaraus/booking_list.html', {'bookings': bookings})
+
     # return HttpResponse("Tässä näkyvät varaukset")
 # 
 # @login_required

@@ -3,19 +3,56 @@
 {% block title %}TilavarausjärjestelmäBookingList{% endblock %}
  
 {% block content %}
+
+<!-- Tämä on kopioitu chatGPT:ltä  -->
+ <!-- Menneiden ja tulevien varausten lajittelu on nyt päivän mukaan, pitäisikö saada kellonajan mukaan myös -->
+<h2>Nykyiset ja tulevat varaukset</h2>
 <ul>
-    {% for booking in bookings %}
-        <li>
-            <strong>{{ booking.room }} </strong>
-            <strong>{{ booking.date }}</strong>  
-            {{ booking.begins }} - {{ booking.ends }}
-            ({{ booking.reservation_id }})  
-            – Varaaja: {{ user.last_name }} {{user.first_name}}
-        </li>
-    {% empty %}
-        <li>Ei varauksia.</li>
-    {% endfor %}
+{% for booking in upcoming %}
+    <li>
+        <strong>{{ booking.room }}</strong>
+        {{ booking.date|date:"d.m.Y" }}
+        {{ booking.begins|time:"H:i"}}
+        - {{ booking.ends|time:"H:i"}}
+        — Varaaja: {{ user.first_name }} {{ user.last_name }}
+    </li>
+{% empty %}
+    <li>Ei tulevia varauksia.</li>
+{% endfor %}
 </ul>
+
+<h2>Menneet varaukset</h2>
+<ul>
+{% for booking in past %}
+    <li>
+        {{ booking.room }}
+        {{ booking.date|date:"d.m.Y" }}
+        {{ booking.begins|time:"H:i"}}
+        - {{ booking.ends|time:"H:i"}}
+        — Varaaja: {{ user.first_name }} {{ user.last_name }}
+        
+        
+     </li>
+{% empty %}
+    <li>Ei menneitä varauksia.</li>
+{% endfor %}
+</ul>
+<!-- Tähän päättyy chatGPT:ltä kopioitu osuus -->
+
+<!-- <ul> -->
+    <!-- {% for booking in bookings %} -->
+<!--      -->
+        <!-- <li> -->
+            <!-- <strong>{{ booking.room }} </strong> -->
+            <!-- <strong>{{ booking.date }}</strong>   -->
+            <!-- {{ booking.begins }} - {{ booking.ends }} -->
+            <!-- ({{ booking.reservation_id }})   -->
+            <!-- – Varaaja: {{ user.last_name }} {{user.first_name}} -->
+        <!-- </li> -->
+    <!-- {% empty %} -->
+        <!-- <li>Ei varauksia.</li> -->
+    <!-- {% endfor %} -->
+<!-- </ul> -->
 </div>
 {% endblock %}
 
