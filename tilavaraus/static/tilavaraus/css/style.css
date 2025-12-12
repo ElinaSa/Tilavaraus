@@ -1,8 +1,25 @@
 body {
+    height: 100%;
     font-family: Kanit, sans-serif;
     background-color: #efefef;
     margin: 0;
-    padding: 20px;
+    padding: 20px; 
+}
+/* Footerin sitomiseen? */
+/* Sivun korkeus täyteen */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+/* Kokosivu flexiksi */
+.page-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* Varsinainen sisältö vie kaiken tilan footerin yläpuolelta */
+.content-wrap {
+    flex: 1;
 }
 
 /* body h1 { */
@@ -21,6 +38,10 @@ body {
 
 footer {
     font-size: small;
+    padding: 15px 0; 
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 /* --- Yläbannerin tyylit --- */

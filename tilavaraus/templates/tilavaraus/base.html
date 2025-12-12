@@ -16,9 +16,23 @@
             <img src="{% static 'tilavaraus/images/logo_pinkki_vaaka.png' %}" class="banner-logo" alt="Rasekon logo">
 
             <div class="banner-text">
-                <h1>Virtuaalitilojen varausjärjestelmä BASE</h1>
-                <!-- <p>Varaukset - Tilat - Käyttäjät</p> -->
+                <h1>Virtuaalitilojen varausjärjestelmä</h1>
+                <p>{{ user.first_name }} {{ user.last_name }} {{ user.username }}</p>
             </div>
+            <nav>
+            {% if user.is_authenticated %}          
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}                 
+                    <button class="logout-container-button" type="submit">Kirjaudu ulos</button>     
+                </form>                       
+            {% else %}
+                <span>BASEN Et ole kirjautuneena!</span>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <button type="submit">BASEKirjaudu sisään</button>
+                </form>                                     
+            {% endif %}          
+            </nav>
         </div>
     </header>
     <!-- Yläbanneri loppuu -->
@@ -28,41 +42,26 @@
     <ul>
         <li><a href="{% url 'home' %}">Etusivu</a></li>
         <li><a href="{% url 'new_reservation' %}">Tee uusi varaus</a></li>
-        <li><a href="{% url 'booking_list' %}">Varaukset</a></li>
-         <nav>
-     {% if user.is_authenticated %}
-         <!-- <span>BASENTervetuloa, {{ user.username }}</span>  -->
-         <!-- <br> -->
-         <!-- <br> -->
-         <form method="post" action="{% url 'logout' %}">
-             {% csrf_token %}                 
-             <button class="logout-container-button" type="submit">BASEKirjaudu ulos TOIMIVA</button>     
-         </form>                       
-     {% else %}
-         <span>BASEN Et ole kirjautuneena!</span>
-         <form method="post" action="{% url 'login' %}">
-             {% csrf_token %}
-             <button type="submit">BASEKirjaudu sisään</button>
-         </form>                                     
-     {% endif %}          
- </nav>
-        
+        <li><a href="{% url 'booking_list' %}">Varaukset</a></li>        
     </ul>
     </nav>
     <!-- Navigaaatiopalkki loppuu -->
 
     <div>
+        <main>
+            <!-- TODO: NÄMÄ LUOKAT LISÄTTÄVÄ KAIKILLE KÄYTETTÄVILLE SIVUILLE, vai tarvitaanko niitä lainkaan? -->
+            <div class="page-container">
+                <div class="content-wrap">
+                    {% block content %}
+                    <!-- Sivukohtainen sisältö tähän -->
+                    {% endblock %}
+                </div>
+            </div>
+        </main> 
 
-    <main>
- 
-        {% block content %}
-        <!-- Sivukohtainen sisältö tähän -->
-        {% endblock %}
-    </main>
-
-    <footer>
-        <p>&copy; 2025 ElinaSa</p>
-    </footer>
+        <footer>
+            <p>&copy; 2025 ElinaSa</p>
+        </footer>
     </div>
 </body>
 </html>

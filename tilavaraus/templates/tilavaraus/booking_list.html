@@ -10,9 +10,9 @@
 <ul>
 {% for booking in upcoming %}
     <li>
-        <strong>{{ booking.room }}</strong>
+        <strong> Varattu tila: {{ booking.room }}</strong>
         {{ booking.date|date:"d.m.Y" }}
-        {{ booking.begins|time:"H:i"}}
+        Klo {{ booking.begins|time:"H:i"}}
         - {{ booking.ends|time:"H:i"}}
         — Varaaja: {{ user.first_name }} {{ user.last_name }}
     </li>

@@ -55,3 +55,26 @@
 </body>
 {% endblock %}
 </html>
+
+<!-- tämä loppu siivottu reservationista pois -->
+  <!-- TODO:TÄSTÄ ALKAEN SIIVOTTAVAA:  -->
+ 
+          
+   <h2>Varattavat tilat</h2>
+   <p>Varaa kalenterista haluamasi päivä ja kellonaika</p>
+   <!-- Kalenterin paikka -->
+   <div id="calendar-container" style="margin-top: 30px;">
+       <p><em>Kalenteri latautuu tähän...</em></p>
+   </div>
+   <!-- Esimerkkipainike -->
+   <div style="margin-top: 20px;">
+       <button class="btn">Tee varaus</button>
+   </div>
+   <div class="booking-container">
+       {% for space_class, rooms in rooms_by_class.items %}
+           <div class="booking-column border p-3">
+               <h3>{{ space.room }}</h3>
+               
+                                                                             
+       {% endfor %}
+   </div>
