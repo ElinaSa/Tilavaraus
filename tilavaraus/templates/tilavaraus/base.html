@@ -39,11 +39,14 @@
         
     <!-- Navigaatiopalkki alkaa -->
     <nav class="navbar">
-    <ul>
-        <li><a href="{% url 'home' %}">Etusivu</a></li>
-        <li><a href="{% url 'new_reservation' %}">Tee uusi varaus</a></li>
-        <li><a href="{% url 'booking_list' %}">Varaukset</a></li>        
-    </ul>
+        <ul>
+            
+            <li><a href="{% url 'new_reservation' %}">Etusivu </a></li>
+            <li><a href="{% url 'create_booking' %}">Tee varaus</a></li>
+            <li><a href="{% url 'booking_list' %}">Näytä varaukset</a></li>  
+            
+            
+        </ul>
     </nav>
     <!-- Navigaaatiopalkki loppuu -->
 

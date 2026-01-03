@@ -5,27 +5,38 @@ from .forms import BookingForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def home(request):
-    return redirect('login')
-    #return redirect('booking_list')
-    
+from rest_framework.permissions import IsAuthenticated
 
+# Create your views here.
+
+@login_required
+def home(request):
+    
+    # return redirect('home') 
+    return redirect('login')
+    # TODO: Tässä home aiheuttaa virheen
+    
+@login_required
 def login(request):
     return redirect('login')
 
+@login_required
 def logout(request):
     return redirect('logout')
 
+@login_required
 def testi(request):
     return redirect('testi')
 
+@login_required
 def reservations(request):
     return redirect('reservations')
 
+@login_required
 # def booking(request):
     # return redirect('new_reservation')
-# @login_required
+
+@login_required
 def booking_list(request):
     now = timezone.now()
 
@@ -47,7 +58,7 @@ def booking_list(request):
 
     # return HttpResponse("Tässä näkyvät varaukset")
 # 
-# @login_required
+@login_required
 def create_booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
@@ -62,9 +73,11 @@ def create_booking(request):
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
 # TODO:Tarkista onko create_bookin oikea osoite tässä
 # 
+@login_required
 def booking_detail(request):
     return HttpResponse("Tässä näkyvät varauksen yksityiskohdat")
 
+@login_required
 def new_reservation(request):
     return HttpResponse("Tässä uusin varaus")
 

@@ -45,7 +45,7 @@ class Booking(models.Model):
     ends = models.TimeField()
    
     def __str__(self):
-        return f"{self.bookingID} {self.room} {self.date} {self.begins} {self.ends}"
+        return f"{self.bookingID} {self.room} {self.date} {self.begins} {self.ends} {self.email}"
 
 
 

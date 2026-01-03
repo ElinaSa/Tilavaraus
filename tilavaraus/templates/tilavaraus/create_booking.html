@@ -3,33 +3,26 @@
 
         <h1>Tee uusi varaus</h1>
 
-<!-- <form method="POST"> -->
-    <!-- {% csrf_token %} -->
-    <!-- {{ form.as_p }} -->
-    <!-- <button type="submit">Tallenna</button> -->
-<!-- </form> -->
-<!--  -->
-
-        <form method="POST">
+       <form method="POST" class="booking-form">
             {% csrf_token %}
             <!-- {{ form.as_p }} -->
             <!--  tämä antaaa saman kuin alalitania mutta mukana muös person id-->
-            <p>
+            <p class="form-group">
                 {{ form.room.label }}:<br>
                 {{ form.room }}
             </p>
         
-            <p>
+            <p class="form-group">
                 {{ form.date.label }}:<br>
                 {{ form.date }}
             </p>
         
-            <p>
+            <p class="form-group">
                 {{ form.begins.label }}:<br>
                 {{ form.begins }}
             </p>
         
-            <p>
+            <p class="form-group">
                 {{ form.ends.label }}:<br>
                 {{ form.ends }}
             </p> 
@@ -37,32 +30,10 @@
             <div class="login-container button">          
             <button type="submit">Tallenna</button>
             </div> 
+
         </form>
        
-        <a href="{% url 'new_reservation' %}">TÄMÄ LINKKI VIE RESERVATIONSIIN </a>
-        
-        
-        
+        <a href="{% url 'new_reservation' %}">Palaa etusivulle </a>
     </div>   
 
-<!-- <div class="login-container"> -->
-<!--     -->
-    <!-- <form method="post"> -->
-        <!-- {% csrf_token %} -->
-        <!-- {{ form.as_p}} -->
-<!--                  -->
-        <!-- <a href="reservations.html"> -->
-        <!-- <div class="login-container button">  -->
-        <!-- <button type="submit">Kirjaudu</button></a> -->
-         <!-- </div> -->
-<!--                  -->
-    <!-- </form> -->
-<!--  -->
-    <!-- {% if form.errors %} -->
-        <!-- <p style="color: red;">Tarkista käyttäjätunnus ja salasana.</p> -->
-    <!-- {% endif %} -->
-<!--  -->
-<!--      -->
-<!-- </div> -->
-<!--  -->
 </body>

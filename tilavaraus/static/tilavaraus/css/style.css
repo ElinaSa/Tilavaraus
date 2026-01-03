@@ -1,25 +1,29 @@
+:root {
+    --icon-stroke-width: 1px;
+    --icon-stroke-color: black;
+    --icon-fill-color: none;
+    --icon-background-color: none;
+    --color-raseko-blue: rgb(27, 51, 89);
+    --color-raseko-turquoise-dark: rgb(0, 150, 179);
+    --color-raseko-tuorquoise-light: rgba(75, 188, 197, 0.8);
+    --color-raseko-pink: rgb(232, 32, 112);
+    --color-raseko-pink-lighter: rgba(232, 32, 112, 0.8);
+    --color-raseko-pink-light: rgba(232, 32, 112, 0.6);
+    --color-raseko-pink-verylight: rgba(232, 32, 112, 0.4);
+    --color-raseko-grey: rgb(239, 239, 239);
+    --color-info-box-bg: rgb(199, 221, 36);
+    --shadow-raseko-pink:  rgb(232, 32, 112, 0.4);
+    --shadow-raseko-blue:  rgb(27, 51, 89, 0.4);
+    --color-raseko-highlighter:rgba(75, 188, 197, 0.3);
+}
+
+/* --- Perustyylit body ja tekstit --- */
 body {
     height: 100%;
-    font-family: Kanit, sans-serif;
+    font-family: Kanit, Arial, Helvetica, sans-serif;
     background-color: #efefef;
     margin: 0;
     padding: 20px; 
-}
-/* Footerin sitomiseen? */
-/* Sivun korkeus täyteen */
-html, body {
-    height: 100%;
-    margin: 0;
-}
-/* Kokosivu flexiksi */
-.page-container {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-/* Varsinainen sisältö vie kaiken tilan footerin yläpuolelta */
-.content-wrap {
-    flex: 1;
 }
 
 /* body h1 { */
@@ -36,6 +40,45 @@ html, body {
     /* font-size: 15px; */
 /* } */
 
+/* --- Huone-esittelyn tyyli --- */
+.container-rooms {
+    width: 25%;
+    height: fit-content;
+    /* margin: auto; */
+    /* overflow: auto; */
+    /* padding: 20px; */
+    background-color: var(--color-raseko-tuorquoise-light);
+    align-self: left;
+    text-align: center;
+   
+}
+
+/* ---Footerin sitomiseen?--- */
+/* Sivun korkeus täyteen */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+/* Kokosivu flexiksi */
+.page-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* Varsinainen sisältö vie kaiken tilan footerin yläpuolelta */
+.content-wrap {
+    flex: 1;
+}
+
+/* --- Alatunnisteen tyyli --- */
 footer {
     font-size: small;
     padding: 15px 0; 
@@ -77,7 +120,8 @@ footer {
     opacity: 0.8;
 }
 
-/* Navigaatiopalkki */
+
+/* --- Navigaatiopalkki --- */
 
 .navbar {
     background-color: #2f3e4f;
@@ -104,6 +148,7 @@ footer {
 }
 
 /* responsiivisuus */
+
 @media (max-width: 600px) {
     .banner-inner {
         flex-direction: column;
@@ -122,36 +167,7 @@ footer {
     }
 }
 
-/* header { */
-    /* position: relative; */
-    /* width: 2000px; */
-    /* height: 200px; */
-    /* background-color: #df2070; */
-    /* background-image: image(); */
-/* } */
-
-/* .header { */
-    /* position: relative; */
-    /* width: 2000px; */
-    /* height: 100px; */
-    /* background-color: #df2070; */
-/* } */
-/*  */
-/* .header h1{ */
-    /* font-size: 30px; */
-    /* font-weight: 900; */
-    /* color: white; */
-/* } */
-/*  */
-/* .header h2{ */
-    /* font-size: 30px; */
-    /* font-weight: 900; */
-    /* color: black; */
-/* } */
-/*  */
-
-
-
+/* --- sisäänkirjautumisen tyylit --- */
 .login-container {
     font-size: 20px;
 }
@@ -166,6 +182,7 @@ footer {
     color: white;   
 }
  
+/* --- uloskirjautumisen tyylit --- */
 .logout-container {
     font-size: 20px;
 }
@@ -180,12 +197,34 @@ footer {
     color: white;   
 }
 
-.booking-container {
+/* --- varauksen tekeminen --- */
+.booking-form {
+    color: #df2070;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center; 
 }
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.booking-form label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
 
 .booking-column {
     min-width: 250px;

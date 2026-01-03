@@ -13,11 +13,13 @@
     <div class="page-container">
         <div class="content-wrap">
     
-            <h1>tämä on reservationiin luotua sisältöä. Tarkista mikä sisältö kuuluu etusivulle ja mikä tänne</h1>            
+            <h1>tämä on reservationiin eli pääsivulleluotua sisältöä. Tarkista mikä sisältö kuuluu tänne</h1>            
     
             <h1>Varauskalenteri Reservations</h1>
 
             <a href="{% url 'create_booking' %}">Luo uusi varaus</a>
+
+            
 
             <ul>
                 {% for booking in reservations %}

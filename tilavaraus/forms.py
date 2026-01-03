@@ -3,6 +3,10 @@ from .models import Booking, Space
 
 class BookingForm(forms.ModelForm):
 
+    class Meta:
+        model = Booking
+        fields = ['room','date', 'begins', 'ends']
+
     # Suomalaiset aikaformaatit
     date = forms.DateField(
         input_formats=['%d.%m.%Y', '%Y-%m-%d'],
@@ -28,7 +32,7 @@ class BookingForm(forms.ModelForm):
         widget=forms.Select()
     )
 
-    class Meta:
-        model = Booking
-        fields = ['room','date', 'begins', 'ends']
+    
+    
+    
 
