@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, login, logout, reservations, booking_list, booking_detail, testi, create_booking, new_reservation
+from .views import home, login, logout, reservations, booking_list, booking_detail, testi, create_booking, edit_booking, new_reservation
 from rest_framework import permissions
 
 urlpatterns = [
@@ -12,5 +12,6 @@ urlpatterns = [
     path('reservations/',booking_detail,name='booking_detail'),
     path('reservations/',create_booking,name='create_booking'),
     path('reservations/',new_reservation,name='new_reservation'),
+    path('reservations/<int:booking_id>/edit_booking_form',edit_booking,name='edit_booking'),
     # path('reservations/<int:booking_id>/',booking_detail,name='booking_detail'),
 ]

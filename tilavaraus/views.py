@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Space, Booking
-from .forms import BookingForm
+from .forms import BookingForm, BookingEditForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
@@ -41,7 +41,7 @@ def booking_list(request):
     now = timezone.now()
 
     # käyttäjän varaukset
-    bookings = Booking.objects.filter()
+    bookings = Booking.objects.filter(email=request.user)
 
 
     upcoming = bookings.filter(date__gte=now).order_by('begins')
@@ -72,7 +72,33 @@ def create_booking(request):
 
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
 # TODO:Tarkista onko create_bookin oikea osoite tässä
-# 
+
+@login_required
+def edit_booking(request, bookingID):
+    booking=get_object_or_404(Booking,id=bookingID)
+
+    if request.method == 'POST':
+        form = BookingEditForm(request.POST)
+        if form.is_valid():
+            #Päivitetään muokatut tiedot tietokantaan
+            booking.room = form.cleaned_data["room"]
+            booking.date = form.cleaned_data["date"]
+            booking.begins = form.cleaned_data["begins"]
+            booking.ends= form.cleaned_data["ends"]
+            booking.save()
+
+            return redirect('booking_list', bookingID=booking.id)
+    else:
+        #Esitäytetty lomake GET-pyynnöstä
+        form = BookingEditForm(initial={
+            "room":booking.room,
+            "date":booking.date,
+            "begins":booking.begins,
+            "ends":booking.ends,
+        })
+
+    return render(request, 'tilavaraus/edit_booking.html', {'booking':booking,'form': form})
+
 @login_required
 def booking_detail(request):
     return HttpResponse("Tässä näkyvät varauksen yksityiskohdat")
