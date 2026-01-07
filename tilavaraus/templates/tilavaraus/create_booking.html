@@ -32,7 +32,17 @@
             </div> 
 
         </form>
-       
+
+       {% if form.non_field_errors %}
+        <div class="error">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <!-- {% if form.errors %} -->
+            <!-- <p style="color: red;">CreateBookingin virheilmoitus:Valitsemasi aika on jo varattu.</p> -->
+        <!-- {% endif %} -->
+
         <a href="{% url 'new_reservation' %}">Palaa etusivulle </a>
     </div>   
 

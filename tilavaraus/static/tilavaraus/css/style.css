@@ -26,19 +26,6 @@ body {
     padding: 20px; 
 }
 
-/* body h1 { */
-    /* font-size: 30px; */
-    /* font-weight: 900; */
-    /* color: #df2070; */
-/* } */
-/*  */
-/* body h2 { */
-    /* font-size: 22px;        */
-/* } */
-/*  */
-/* body h3 { */
-    /* font-size: 15px; */
-/* } */
 
 /* --- Huone-esittelyn tyyli --- */
 .container-rooms {
@@ -53,18 +40,13 @@ body {
    
 }
 
+
 /* ---Footerin sitomiseen?--- */
 /* Sivun korkeus täyteen */
 html, body {
     height: 100%;
     margin: 0;
 }
-
-
-
-
-
-
 
 
 /* Kokosivu flexiksi */
@@ -145,6 +127,12 @@ footer {
 
 .navbar a:hover {
     text-decoration: underline;
+}
+
+/* virheilmoitus */
+.error {
+    font-size: large;
+    font-weight: bold;
 }
 
 /* responsiivisuus */

@@ -75,19 +75,22 @@ def create_booking(request):
 
 @login_required
 def edit_booking(request, bookingID):
-    booking=get_object_or_404(Booking,id=bookingID)
+    # booking=get_object_or_404(Booking,id=bookingID)
+    booking = Booking.objects.get(id=bookingID)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = BookingEditForm(request.POST)
         if form.is_valid():
             #Päivitetään muokatut tiedot tietokantaan
             booking.room = form.cleaned_data["room"]
             booking.date = form.cleaned_data["date"]
             booking.begins = form.cleaned_data["begins"]
-            booking.ends= form.cleaned_data["ends"]
+            booking.ends = form.cleaned_data["ends"]
             booking.save()
 
-            return redirect('booking_list', bookingID=booking.id)
+            return redirect('booking_list')
+            # , bookingID=booking.id
+        
     else:
         #Esitäytetty lomake GET-pyynnöstä
         form = BookingEditForm(initial={

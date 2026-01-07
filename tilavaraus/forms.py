@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from .models import Booking, Space
 
+# Lomake varauksen tekemiseksi
 class BookingForm(forms.ModelForm):
 
     class Meta:
@@ -64,27 +65,33 @@ class BookingForm(forms.ModelForm):
         widget=forms.Select()
     )
 
-    
+# Lomake varausten muokkaamiseksi   
 class BookingEditForm(forms.ModelForm):
+
+    bookingID = forms.CharField(label="Varaustunnus", max_length=100)
+    
     date = forms.DateField(
         input_formats=['%d.%m.%Y', '%Y-%m-%d'],
         label="Muokkaa päivä",
         widget=forms.DateInput(attrs={'type': 'date'})
     )
+
     begins = forms.TimeField(
         input_formats=['%H.%M', '%H:%M'],
         label="Muokkaa aloitusaika",
         widget=forms.TimeInput(attrs={'type': 'time'})
     )
+
     ends = forms.TimeField(
         input_formats=['%H.%M', '%H:%M'],
         label="Muokkaa päättymisaika",
         widget=forms.TimeInput(attrs={'type': 'time'})
     )
+
     room = forms.ModelChoiceField(
         queryset=Space.objects.all(),
         label="Muokkaa tila",
-        widget=forms.Select()
+        widget=forms.Select() 
     ) 
     
 

@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Varaustiedot</title>
+    <title>Varausten muokkaus</title>
+    <!-- <title>{{booking.bookingID}}</title> -->
     <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}">
 </head>
 <body>
  
 <div class="booking-detail">
     <h3>Muokkaa varausta</h3>
-    <form method="post">
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Tallenna</button>
