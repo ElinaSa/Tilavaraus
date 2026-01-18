@@ -19,8 +19,7 @@
 
             <a href="{% url 'create_booking' %}">Luo uusi varaus</a>
 
-           
-            
+            <a href="{% url 'edit_booking' booking.id %}">Muokkaa</a>
 
             <ul>
                 {% for booking in reservations %}
@@ -33,6 +32,18 @@
                 </li>
                 {% empty %}
                 <li>Ei varauksia.</li>
+                {% endfor %}
+            </ul>
+
+            <ul>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.room }}</td>
+                        <td>{{ booking.date }}</td>
+                        <td>
+                            <a href="{% url 'edit_booking' booking.id %}">Muokkaa</a>
+                        </td>
+                    </tr>
                 {% endfor %}
             </ul>
 

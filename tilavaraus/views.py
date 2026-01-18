@@ -74,33 +74,42 @@ def create_booking(request):
 # TODO:Tarkista onko create_bookin oikea osoite tässä
 
 @login_required
-def edit_booking(request, bookingID):
+def edit_booking(request, pk):
+# def edit_booking(request, bookingID):
+    booking=get_object_or_404(Booking, pk=pk, date__gte=timezone.now().date())
     # booking=get_object_or_404(Booking,id=bookingID)
-    booking = Booking.objects.get(id=bookingID)
+    # booking = Booking.objects.get(id=bookingID)
+    
 
     if request.method == "POST":
-        form = BookingEditForm(request.POST)
+        form = BookingEditForm(request.POST, instance=booking)
         if form.is_valid():
             #Päivitetään muokatut tiedot tietokantaan
-            booking.room = form.cleaned_data["room"]
-            booking.date = form.cleaned_data["date"]
-            booking.begins = form.cleaned_data["begins"]
-            booking.ends = form.cleaned_data["ends"]
-            booking.save()
+            # booking.room = form.cleaned_data["room"]
+            # booking.date = form.cleaned_data["date"]
+            # booking.begins = form.cleaned_data["begins"]
+            # booking.ends = form.cleaned_data["ends"]
+            form.save()
+            return redirect("booking_list")
+        else:
+            form = BookingEditForm(instance=booking)
 
-            return redirect('booking_list')
+        return render(request, "edit_booking.html", {"form":form})
+            # booking.save()
+
+            # return redirect("booking_detail",bookingID=booking.id)
             # , bookingID=booking.id
         
-    else:
-        #Esitäytetty lomake GET-pyynnöstä
-        form = BookingEditForm(initial={
-            "room":booking.room,
-            "date":booking.date,
-            "begins":booking.begins,
-            "ends":booking.ends,
-        })
+    # else:
+        # Esitäytetty lomake GET-pyynnöstä
+        # form = BookingEditForm(initial={
+            # "room":booking.room,
+            # "date":booking.date,
+            # "begins":booking.begins,
+            # "ends":booking.ends,
+        # })
 
-    return render(request, 'tilavaraus/edit_booking.html', {'booking':booking,'form': form})
+    # return render(request, "tilavaraus/edit_booking.html", {"booking":booking,"form": form})
 
 @login_required
 def booking_detail(request):
