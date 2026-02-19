@@ -25,25 +25,14 @@
                 Klo {{ booking.begins|time:"H:i"}}
                 - {{ booking.ends|time:"H:i"}}
                 — Varaaja: {{ user.first_name }} {{ user.last_name }}
-               
+                <a href="{% url 'edit_booking' booking.pk %}">Muokkaa</a>
+                <a href="{% url 'delete_booking' booking.pk %}">Poista</a>
             </li>
         {% empty %}
             <li>Ei tulevia varauksia.</li>
         {% endfor %}
         </ul>
-
-        
-       {% for booking in upcoming %}
-            <li>
-                {{ booking.room }} –
-                {{ booking.date|date:"d.m.Y" }}
-                {{ booking.begins|time:"H:i" }}–{{ booking.ends|time:"H:i" }}
-
-                <a href="{% url 'edit_booking' booking.pk %}">Muokkaa</a>
-                <a href="{% url 'delete_booking' booking.pk %}">Poista</a>
-            </li>
-        {% endfor %}
-
+ 
         
         <h2>Menneet varaukset</h2>
         <ul>
