@@ -40,6 +40,7 @@
                 {{ booking.begins|time:"H:i" }}–{{ booking.ends|time:"H:i" }}
 
                 <a href="{% url 'edit_booking' booking.pk %}">Muokkaa</a>
+                <a href="{% url 'delete_booking' booking.pk %}">Poista</a>
             </li>
         {% endfor %}
 

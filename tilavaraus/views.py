@@ -96,6 +96,18 @@ def edit_booking(request, pk):
         'booking': booking
     })
 
+@login_required
+def delete_booking(request, pk):
+
+    booking = get_object_or_404(
+        Booking, 
+        pk=pk, 
+        email=request.user, # käyttäjä saa poistaa vain omia varauksia
+        date__gte=timezone.now().date() # vain tulevat varaukset
+    )
+    booking.delete()
+    return redirect('booking_list')
+
 
 @login_required
 def booking_detail(request,bookingID):
