@@ -76,6 +76,7 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# TODO: muuta Database asetus lukemaan Engine .env-tiedostosta
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
