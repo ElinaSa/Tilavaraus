@@ -13,7 +13,7 @@ Virtuaaliympäristön luominen tapahtuu komennolla `py -3 -m venv .venv` ja akti
 
 Pythonin laajennusten asennustyökalu pip asennetaan komennolla `python -m pip install --upgrade pip`.
 
-Django asennetaan komennolla `python -m pip install django`.
+Django asennetaan komennolla `python -m pip install django` ja päivitetään tarvittaessa `python.exe -m pip install --upgrade pip`.
 
 Django-projektin pohjan voi luoda komennolla `django-admin startproject projektin_nimi`. Tämä generoi kansioon projektin minimisisällön.
 
