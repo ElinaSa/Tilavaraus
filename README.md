@@ -9,7 +9,7 @@ Python extensions-plugin Visual Studio Codeen https://marketplace.visualstudio.c
 
 Pythonin asennus https://www.python.org/downloads/
 
-Virtuaaliympäristön luominen tapahtuu komennolla 'py -3 -m venv .venv' ja aktivointi komennolla `.venv\scripts\activate`.
+Virtuaaliympäristön luominen tapahtuu komennolla `py -3 -m venv .venv` ja aktivointi komennolla `.venv\scripts\activate`.
 
 Pythonin laajennusten asennustyökalu pip asennetaan komennolla `python -m pip install --upgrade pip`.
 
@@ -20,6 +20,8 @@ Django-projektin pohjan voi luoda komennolla `django-admin startproject projekti
 Migraatioiden tekemiseen käytetään komentoja `python manage.py makemigrations` ja `python manage.py migrate`.
 
 Projektin käynnistys tapahtuu komennolla `python manage.py runserver`.
+
+PostgreSQL-ajurin asentaminen suoritetaan komennolla `pip install psycopg2-binary`.
 
 Django REST Frameworkin ottaminen käyttöön tapahtuu komennolla `pip install djangorestframework` ja lisäämällä `setting.py` -tiedoston `INSTALLED_APPS`-osioon `rest_framework`.
 
