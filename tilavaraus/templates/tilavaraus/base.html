@@ -2,69 +2,69 @@
 
 <!DOCTYPE html>
 <html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Tilavaraus{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
-</head>
-
-<body>
-    <!-- Yläbanneri alkaa -->
-    <header class="top-banner">
-        <div class="banner-inner">
-            <img src="{% static 'tilavaraus/images/logo_pinkki_vaaka.png' %}" class="banner-logo" alt="Rasekon logo">
-
-            <div class="banner-text">
-                <h1>Virtuaalitilojen varausjärjestelmä</h1>
-                <p>{{ user.first_name }} {{ user.last_name }} {{ user.username }}</p>
-            </div>
-            <nav>
-            {% if user.is_authenticated %}          
-                <form method="post" action="{% url 'logout' %}">
-                    {% csrf_token %}                 
-                    <button class="logout-container-button" type="submit">Kirjaudu ulos</button>     
-                </form>                       
-            {% else %}
-                <span>BASEN Et ole kirjautuneena!</span>
-                <form method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <button type="submit">BASEKirjaudu sisään</button>
-                </form>                                     
-            {% endif %}          
-            </nav>
-        </div>
-    </header>
-    <!-- Yläbanneri loppuu -->
-        
-    <!-- Navigaatiopalkki alkaa -->
-    <nav class="navbar">
-        <ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Tilavaraus{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
+    </head>
+    
+    <body>
+        <!-- Yläbanneri alkaa -->
+        <header class="top-banner">
+            <div class="banner-inner">
+                <img src="{% static 'tilavaraus/images/logo_pinkki_vaaka.png' %}" class="banner-logo" alt="Rasekon logo">
             
-            <li><a href="{% url 'new_reservation' %}">Etusivu </a></li>
-            <li><a href="{% url 'create_booking' %}">Tee varaus</a></li>
-            <li><a href="{% url 'booking_list' %}">Näytä varaukset</a></li>  
-            
-            
-        </ul>
-    </nav>
-    <!-- Navigaaatiopalkki loppuu -->
-
-    <div>
-        <main>
-            <!-- TODO: NÄMÄ LUOKAT LISÄTTÄVÄ KAIKILLE KÄYTETTÄVILLE SIVUILLE, vai tarvitaanko niitä lainkaan? -->
-            <div class="page-container">
-                <div class="content-wrap">
-                    {% block content %}
-                    <!-- Sivukohtainen sisältö tähän -->
-                    {% endblock %}
+                <div class="banner-text">
+                    <h1>Virtuaalitilojen varausjärjestelmä</h1>
+                    <p>{{ user.first_name }} {{ user.last_name }} {{ user.username }}</p>
                 </div>
+                <nav>
+                {% if user.is_authenticated %}          
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}                 
+                        <button class="logout-container-button" type="submit">Kirjaudu ulos</button>     
+                    </form>                       
+                {% else %}
+                    <span>BASEN Et ole kirjautuneena!</span>
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <button type="submit">BASEKirjaudu sisään</button>
+                    </form>                                     
+                {% endif %}          
+                </nav>
             </div>
-        </main> 
-
-        <footer>
-            <p>&copy; 2025 ElinaSa</p>
-        </footer>
-    </div>
-</body>
+        </header>
+        <!-- Yläbanneri loppuu -->
+            
+        <!-- Navigaatiopalkki alkaa -->
+        <nav class="navbar">
+            <ul>
+                
+                <li><a href="{% url 'new_reservation' %}">Etusivu </a></li>
+                <li><a href="{% url 'create_booking' %}">Tee varaus</a></li>
+                <li><a href="{% url 'booking_list' %}">Näytä varaukset</a></li>  
+                
+                
+            </ul>
+        </nav>
+        <!-- Navigaaatiopalkki loppuu -->
+    
+        <div>
+            <main>
+                <!-- TODO: NÄMÄ LUOKAT LISÄTTÄVÄ KAIKILLE KÄYTETTÄVILLE SIVUILLE, vai tarvitaanko niitä lainkaan? -->
+                <div class="page-container">
+                    <div class="content-wrap">
+                        {% block content %}
+                        <!-- Sivukohtainen sisältö tähän -->
+                        {% endblock %}
+                    </div>
+                </div>
+            </main> 
+        
+            <footer>
+                <p>&copy; 2025 ElinaSa</p>
+            </footer>
+        </div>
+    </body>
 </html>

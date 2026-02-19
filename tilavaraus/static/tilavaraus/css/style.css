@@ -27,6 +27,9 @@ body {
 }
 
 
+
+
+
 /* --- Huone-esittelyn tyyli --- */
 .container-rooms {
     width: 25%;
@@ -133,6 +136,7 @@ footer {
 .error {
     font-size: large;
     font-weight: bold;
+    color: #e13f12;
 }
 
 /* responsiivisuus */
@@ -176,7 +180,7 @@ footer {
 }
 
 .logout-container-button {
-    background-color: #e13f12;
+    background-color: #0095b2;
     padding: 15px;
     border-radius: 15px;
     font-weight: normal;
@@ -212,7 +216,6 @@ footer {
     margin-bottom: 0.25rem;
     display: block;
 }
-
 
 .booking-column {
     min-width: 250px;

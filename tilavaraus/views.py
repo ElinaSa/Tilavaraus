@@ -48,7 +48,7 @@ def booking_list(request):
     past = bookings.filter(date__lt=now).order_by('-begins')
 
     return render(request, "tilavaraus/booking_list.html", {
-        # 'bookings': bookings,
+        'bookings': bookings,
         "upcoming": upcoming,
         "past": past,
     })
@@ -72,49 +72,36 @@ def create_booking(request):
 
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
 # TODO:Tarkista onko create_bookin oikea osoite tässä
-
+ 
 @login_required
 def edit_booking(request, pk):
-# def edit_booking(request, bookingID):
-    booking=get_object_or_404(Booking, pk=pk, date__gte=timezone.now().date())
-    # booking=get_object_or_404(Booking,id=bookingID)
-    # booking = Booking.objects.get(id=bookingID)
-    
 
+    booking = get_object_or_404(
+        Booking, 
+        pk=pk, 
+        email=request.user, # käyttäjä saa muokata vain omia varauksia
+        date__gte=timezone.now().date() # vain tulevat varaukset
+    )
+   
     if request.method == "POST":
         form = BookingEditForm(request.POST, instance=booking)
         if form.is_valid():
-            #Päivitetään muokatut tiedot tietokantaan
-            # booking.room = form.cleaned_data["room"]
-            # booking.date = form.cleaned_data["date"]
-            # booking.begins = form.cleaned_data["begins"]
-            # booking.ends = form.cleaned_data["ends"]
             form.save()
-            return redirect("booking_list")
-        else:
-            form = BookingEditForm(instance=booking)
+            return redirect('booking_list')
+    else:
+        form = BookingEditForm(instance=booking)
 
-        return render(request, "edit_booking.html", {"form":form})
-            # booking.save()
+    return render(request, "tilavaraus/edit_booking.html", {
+        'form':form,
+        'booking': booking
+    })
 
-            # return redirect("booking_detail",bookingID=booking.id)
-            # , bookingID=booking.id
-        
-    # else:
-        # Esitäytetty lomake GET-pyynnöstä
-        # form = BookingEditForm(initial={
-            # "room":booking.room,
-            # "date":booking.date,
-            # "begins":booking.begins,
-            # "ends":booking.ends,
-        # })
-
-    # return render(request, "tilavaraus/edit_booking.html", {"booking":booking,"form": form})
 
 @login_required
-def booking_detail(request):
-    return HttpResponse("Tässä näkyvät varauksen yksityiskohdat")
-
+def booking_detail(request,bookingID):
+    return HttpResponse(f"Varauksen ID: {bookingID}")
+# booking.bookingID
+# 
 @login_required
 def new_reservation(request):
     return HttpResponse("Tässä uusin varaus")

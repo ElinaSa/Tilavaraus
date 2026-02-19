@@ -12,10 +12,10 @@ class BookingForm(forms.ModelForm):
     # Päällekkäisten varausten esto
     def clean(self):
         cleaned_data = super().clean()
-        date =cleaned_data.get('date')
-        begins =cleaned_data.get('begins')
-        ends =cleaned_data.get('ends')
-        room =cleaned_data.get('room')
+        date = cleaned_data.get('date')
+        begins = cleaned_data.get('begins')
+        ends = cleaned_data.get('ends')
+        room = cleaned_data.get('room')
 
         if not date or not begins or not ends or not room:
             return cleaned_data
@@ -24,19 +24,17 @@ class BookingForm(forms.ModelForm):
             raise ValidationError("Päättymisaika ei voi olla ennen alkamisaikaa.")
             
         overlapping = Booking.objects.filter(
-            room=room,
-            date=date,
-            begins__lt=ends,
-            ends__gt=begins
+            room = room,
+            date = date,
+            begins__lt = ends,
+            ends__gt = begins
         )
 
         if self.instance.pk:
             overlapping = overlapping.exclude(pk=self.instance.pk)
 
         if overlapping.exists():
-            raise ValidationError(
-                "Tila on jo varattu valitulle ajankohdalle."
-            )
+            raise ValidationError("Tila on jo varattu valitulle ajankohdalle.")
             
         return cleaned_data
 
@@ -70,32 +68,34 @@ class BookingEditForm(forms.ModelForm):
 
      class Meta:
         model = Booking
-        fields = ['bookingID','date', 'begins', 'ends']
+        fields = ['room', 'date', 'begins', 'ends']
 
-        bookingID = forms.CharField(label="Varaustunnus", max_length=100)
-    
-        date = forms.DateField(
-            input_formats=['%d.%m.%Y', '%Y-%m-%d'],
-            label="Muokkaa päivä",
-            widget=forms.DateInput(attrs={'type': 'date'})
-        )
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'begins': forms.TimeInput(attrs={'type': 'time'}),
+            'ends': forms.TimeInput(attrs={'type': 'time'}),  
+        }
+            
+        # date = forms.DateField(
+            # input_formats=['%d.%m.%Y', '%Y-%m-%d'],
+            # label="Muokkaa päivä",
+            # widget=forms.DateInput(attrs={'type': 'date'})
+        # )
 
-        begins = forms.TimeField(
-            input_formats=['%H.%M', '%H:%M'],
-            label="Muokkaa aloitusaika",
-            widget=forms.TimeInput(attrs={'type': 'time'})
-        )
+        # begins = forms.TimeField(
+            # input_formats=['%H.%M', '%H:%M'],
+            # label="Muokkaa aloitusaika",
+            # widget=forms.TimeInput(attrs={'type': 'time'})
+        # )
 
-        ends = forms.TimeField(
-            input_formats=['%H.%M', '%H:%M'],
-            label="Muokkaa päättymisaika",
-            widget=forms.TimeInput(attrs={'type': 'time'})
-        )
+        # ends = forms.TimeField(
+            # input_formats=['%H.%M', '%H:%M'],
+            # label="Muokkaa päättymisaika",
+            # widget=forms.TimeInput(attrs={'type': 'time'})
+        # )
 
         room = forms.ModelChoiceField(
             queryset=Space.objects.all(),
             label="Muokkaa tila",
             widget=forms.Select() 
         ) 
-    
-

@@ -30,13 +30,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'),name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/login/'),name='logout'),
     path('booking_list/', views.booking_list, name='booking_list'),
+    path('booking_detail/<int:bookingID>/',views.booking_detail, name='booking_detail'),
     path('reservations/new/', views.create_booking, name='create_booking'),
-    path("edit_booking/<int:pk>/", views.edit_booking, name="edit_booking"),
-    # path('edit_booking',views.edit_booking,name='edit_booking'),
-    # 
-    # path('reservations/edit/<int:bookingID>', views.edit_booking, name='edit_booking'),
-    
-    # path('edit_booking/<int:bookingID>/', views.edit_booking, name='edit_booking'),
-    # 
-    
+    path('edit_booking/<int:pk>/', views.edit_booking, name='edit_booking'),
+                               
 ]

@@ -2,33 +2,22 @@
 
 <!DOCTYPE html>
 <html lang="'fi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Uloskirjautuminen</title>
+        <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}">
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Uloskirjautuminen</title>
-    <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}">
-</head>
-
-<body>
-    
-
-<div class="logout-container">
-   
-    <form method="post">
-        {% csrf_token %}
-        
-                
-        <a href="reservations.html">
-        <div class="logout-container-button"> 
-        <button type="submit">KirjauduUlos</button></a>
-         </div>
-                
-    </form>
-
-         
-    
-</div>
-</body>
-
+    <body>     
+        <div class="logout-container">
+            <form method="post">
+                {% csrf_token %}    
+                <a href="reservations.html">
+                <div class="logout-container-button"> 
+                    <button type="submit">KirjauduUlos</button></a>
+                </div>       
+            </form>               
+        </div>
+    </body>
 </html>

@@ -1,49 +1,68 @@
-<body>
-    <div class="new-reservation">
+{% extends "tilavaraus/base.html" %}
+{% load static %}
 
-        <h1>Tee uusi varaus</h1>
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Varaaminen{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
+    </head>
 
-       <form method="POST" class="booking-form">
-            {% csrf_token %}
-            <!-- {{ form.as_p }} -->
-            <!--  tämä antaaa saman kuin alalitania mutta mukana muös person id-->
-            <p class="form-group">
-                {{ form.room.label }}:<br>
-                {{ form.room }}
-            </p>
+    {% block content %}
+
+    <body>
         
-            <p class="form-group">
-                {{ form.date.label }}:<br>
-                {{ form.date }}
-            </p>
-        
-            <p class="form-group">
-                {{ form.begins.label }}:<br>
-                {{ form.begins }}
-            </p>
-        
-            <p class="form-group">
-                {{ form.ends.label }}:<br>
-                {{ form.ends }}
-            </p> 
-     
-            <div class="login-container button">          
-            <button type="submit">Tallenna</button>
-            </div> 
+        <div class="new-reservation">
 
-        </form>
+            <h1>Tee uusi varaus</h1>
 
-       {% if form.non_field_errors %}
-        <div class="error">
-            {{ form.non_field_errors }}
-        </div>
-        {% endif %}
+            <form method="POST" class="booking-form">
+                {% csrf_token %}             
+               
+                <p class="form-group">
+                    {{ form.room.label }}:<br>
+                    {{ form.room }}
+                </p>
+                <br>
+                <p class="form-group">
+                    {{ form.date.label }}:<br>
+                    {{ form.date }}
+                </p>
+                <br>
+                <p class="form-group">
+                    {{ form.begins.label }}:<br>
+                    {{ form.begins }}
+                </p>
+                <br>
+                <p class="form-group">
+                    {{ form.ends.label }}:<br>
+                    {{ form.ends }}
+                </p> 
+                <br>
+                <div class="login-container button">          
+                    <button type="submit">Tallenna</button>
+                </div> 
 
-        <!-- {% if form.errors %} -->
-            <!-- <p style="color: red;">CreateBookingin virheilmoitus:Valitsemasi aika on jo varattu.</p> -->
-        <!-- {% endif %} -->
+            </form>
 
-        <a href="{% url 'new_reservation' %}">Palaa etusivulle </a>
-    </div>   
+            {% if form.non_field_errors %}
+                <div class="error">                              
+                    {{ form.non_field_errors }}                    
+                </div>
+            {% endif %}
 
-</body>
+                                 
+            <a href="{% url 'new_reservation' %}">Palaa etusivulle </a>
+
+        </div>  
+
+    </body>
+
+    {% endblock %}
+    
+</html> 
+ 
+ 
+ 
