@@ -27,11 +27,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG','False')=='True'
+# Kehitysvaiheessa true
+# DEBUG = os.getenv('DEBUG','False')=='True'
+# TODO: Vaihda tuotantoon false
+DEBUG = False
 
 ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
+# TODO: Tarkista Renderin yhteysessä tämä ALLOWED_HOSTS = ['taskplanner-elinasa.onrender.com']
+
 
 # Application definition
+# TODO: tarkista tarvitaanko corsheaders ja drf_yasg
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,19 +45,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'rest_framework',
     'rest_framework.authtoken',
     'tilavaraus',
     ]
 
+# Huom! Middelwaressa whitenoisen oltava heti alussa securityn jälkeen
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'web_project.urls'
@@ -88,6 +98,7 @@ DATABASES = {
         'PORT' : os.getenv('DB_PORT'), 
     }
 }
+print(os.getenv('DB_ENGINE'))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
