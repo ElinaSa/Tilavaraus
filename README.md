@@ -13,13 +13,15 @@ Virtuaaliympäristön luominen tapahtuu komennolla `py -3 -m venv .venv` ja akti
 
 Pythonin laajennusten asennustyökalu pip asennetaan komennolla `python -m pip install --upgrade pip`.
 
-Django asennetaan komennolla `python -m pip install django`.
+Django asennetaan komennolla `python -m pip install django` ja päivitetään tarvittaessa `python.exe -m pip install --upgrade pip`.
 
 Django-projektin pohjan voi luoda komennolla `django-admin startproject projektin_nimi`. Tämä generoi kansioon projektin minimisisällön.
 
 Migraatioiden tekemiseen käytetään komentoja `python manage.py makemigrations` ja `python manage.py migrate`.
 
 Projektin käynnistys tapahtuu komennolla `python manage.py runserver`.
+
+PostgreSQL-ajurin asentaminen suoritetaan komennolla `pip install psycopg2-binary`.
 
 Django REST Frameworkin ottaminen käyttöön tapahtuu komennolla `pip install djangorestframework` ja lisäämällä `setting.py` -tiedoston `INSTALLED_APPS`-osioon `rest_framework`.
 

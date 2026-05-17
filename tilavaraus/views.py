@@ -1,43 +1,54 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Space, Booking
-from .forms import BookingForm
+from .forms import BookingForm, BookingEditForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def home(request):
-    return redirect('login')
-    #return redirect('booking_list')
-    
+from rest_framework.permissions import IsAuthenticated
 
+# Create your views here.
+
+@login_required
+def home(request):
+    
+    # return redirect('home') 
+    return redirect('login')
+    # TODO: Tässä home aiheuttaa virheen
+    
+@login_required
 def login(request):
     return redirect('login')
 
+@login_required
 def logout(request):
     return redirect('logout')
 
+@login_required
 def testi(request):
     return redirect('testi')
 
+@login_required
 def reservations(request):
     return redirect('reservations')
 
+@login_required
 # def booking(request):
     # return redirect('new_reservation')
-# @login_required
+
+@login_required
 def booking_list(request):
     now = timezone.now()
 
     # käyttäjän varaukset
-    bookings = Booking.objects.filter()
+    bookings = Booking.objects.filter(email=request.user)
 
 
     upcoming = bookings.filter(date__gte=now).order_by('begins')
     past = bookings.filter(date__lt=now).order_by('-begins')
 
     return render(request, "tilavaraus/booking_list.html", {
-        # 'bookings': bookings,
+        'bookings': bookings,
         "upcoming": upcoming,
         "past": past,
     })
@@ -47,7 +58,7 @@ def booking_list(request):
 
     # return HttpResponse("Tässä näkyvät varaukset")
 # 
-# @login_required
+@login_required
 def create_booking(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
@@ -61,10 +72,49 @@ def create_booking(request):
 
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
 # TODO:Tarkista onko create_bookin oikea osoite tässä
-# 
-def booking_detail(request):
-    return HttpResponse("Tässä näkyvät varauksen yksityiskohdat")
+ 
+@login_required
+def edit_booking(request, pk):
 
+    booking = get_object_or_404(
+        Booking, 
+        pk=pk, 
+        email=request.user, # käyttäjä saa muokata vain omia varauksia
+        date__gte=timezone.now().date() # vain tulevat varaukset
+    )
+   
+    if request.method == "POST":
+        form = BookingEditForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('booking_list')
+    else:
+        form = BookingEditForm(instance=booking)
+
+    return render(request, "tilavaraus/edit_booking.html", {
+        'form':form,
+        'booking': booking
+    })
+
+@login_required
+def delete_booking(request, pk):
+
+    booking = get_object_or_404(
+        Booking, 
+        pk=pk, 
+        email=request.user, # käyttäjä saa poistaa vain omia varauksia
+        date__gte=timezone.now().date() # vain tulevat varaukset
+    )
+    booking.delete()
+    return redirect('booking_list')
+
+
+@login_required
+def booking_detail(request,bookingID):
+    return HttpResponse(f"Varauksen ID: {bookingID}")
+# booking.bookingID
+# 
+@login_required
 def new_reservation(request):
     return HttpResponse("Tässä uusin varaus")
 

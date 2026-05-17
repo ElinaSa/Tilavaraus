@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# 
+
 # Create your models here.
 
 # Yksi moneen taulut
@@ -35,7 +35,7 @@ def __str__(self):
         # return f"{self.email} {self.first_name} {self.last_name}"
     # 
 class Booking(models.Model):
-    bookingID = models.AutoField(primary_key=True)
+    bookingID = models.AutoField(primary_key=True) 
 
     room = models.ForeignKey(Space, on_delete=models.CASCADE)
     email = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -45,7 +45,9 @@ class Booking(models.Model):
     ends = models.TimeField()
    
     def __str__(self):
-        return f"{self.bookingID} {self.room} {self.date} {self.begins} {self.ends}"
+        return f" {self.room} {self.date} {self.begins} {self.ends} {self.email}"
+    
+        # {self.bookingID}
 
 
 

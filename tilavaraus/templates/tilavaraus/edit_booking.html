@@ -1,0 +1,37 @@
+{% extends "tilavaraus/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}edit_booking{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
+  </head>
+
+  {% block content %}
+
+  <body>  
+  
+    <h2>Muokkaa varausta</h2>
+
+    <p>
+      {{ booking.room }} –
+      {{ booking.date|date:"d.m.Y" }}
+      {{ booking.begins|time:"H:i" }}–{{ booking.ends|time:"H:i" }}
+    </p>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Tallenna muutokset</button>
+    </form>
+
+    <a href="{% url 'booking_list' %}">Peruuta</a>
+    
+  </body>
+
+  {% endblock %}
+
+</html>

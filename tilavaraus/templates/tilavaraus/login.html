@@ -3,40 +3,39 @@
 <!DOCTYPE html>
 <html lang="'fi">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Kirjautuminen</title>
-    <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}">
-</head>
-
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Kirjautuminen</title>
+        <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}">
+    </head>
     
-<div class="header">
-<h1>Raseko goes virtual!</h1> 
-</div>
-
-<h2>Kirjaudu sisään tilavarausjärjestelmään</h2>
-
-<div class="login-container">
-   
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p}}
-                
-        <a href="reservations.html">
-        <div class="login-container button"> 
-        <button type="submit">Kirjaudu</button></a>
-         </div>
-                
-    </form>
-
-    {% if form.errors %}
-        <p style="color: red;">Tarkista käyttäjätunnus ja salasana.</p>
-    {% endif %}
-
+    <body>
+        
+        <div class="header">
+            <h1>Raseko goes virtual!</h1> 
+        </div>
     
-</div>
-</body>
+        <h2>Kirjaudu sisään tilavarausjärjestelmään</h2>
+    
+        <div class="login-container">
+        
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p}}
+                        
+                <a href="reservations.html">
+                <div class="login-container button"> 
+                    <button type="submit">Kirjaudu</button></a>
+                </div>
+                        
+            </form>
+        
+            {% if form.errors %}
+                <p style="color: red;">Tarkista käyttäjätunnus ja salasana.</p>
+            {% endif %}
+                   
+        </div>
+    </body>
 
 </html>

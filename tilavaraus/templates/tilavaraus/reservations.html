@@ -3,60 +3,59 @@
 
 <!DOCTYPE html>
 <html lang="'fi">
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Reservations{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
+    </head>
  
-{% block title %}TilavarausjärjestelmäBookingList{% endblock %}
- 
-{% block content %}
+    {% block content %}
     
-<body> 
-    <div class="page-container">
-        <div class="content-wrap">
-    
-            <h1>tämä on reservationiin luotua sisältöä. Tarkista mikä sisältö kuuluu etusivulle ja mikä tänne</h1>            
-    
-            <h1>Varauskalenteri Reservations</h1>
+    <body> 
 
-            <a href="{% url 'create_booking' %}">Luo uusi varaus</a>
+       
+        <div class="page-container">
+            <div class="content-wrap">
+        
+     
+        
+                <!-- <h1>Etusivu Reservations</h1> -->
+                <h1>Tervetuloa Rasekon virtuaalitilojen varausjärjestelmään</h1>
 
-            <ul>
-                {% for booking in reservations %}
-                <li>
-                    <strong>{{ booking.date }}</strong>  
-                    {{ booking.begins }} - {{ booking.ends }}
-                    ({{ user.email }})  
-                    – Varaaja: {{ booking.username }} 
-                    <!-- TODO: Varaaja täytyy tarkistaa, onko username sana oikea tässä -->
-                </li>
-                {% empty %}
-                <li>Ei varauksia.</li>
-                {% endfor %}
-            </ul>
+                <p>Rasekon virtuaalihuoneessa voit uppoutua virtuaalitodellisuuteen tilan omien virtuaalielementtien avulla. <br>
+                    Et tarvitse epämukavia virtuaalilaseja, sillä ympäristö on luotu tilan seinille. 
+                    Voit keskittyä olemaan läsnä virtuaalisessa maailmassa ja tuntea olevasi osa kokemusta, 
+                    joka vie mukanaan.
+                </p>
 
-            <!-- Tähän booking_listista poistetut -->
-            <!-- <h2>Varattavat tilat</h2> -->
-            <!-- <div class="booking-container"> -->
-            <!-- {% for space_class, rooms in rooms_by_class.items %} -->
-            <!-- <div class="booking-column border p-3"> -->
-            <!-- <h3>{{ space.room }}</h3> -->
-             <!-- {% endfor %} -->
-        </div>  
-                                                                
-    
-    </div>
+                <p>Tällä hetkellä käytössä on yksi virtuaalitila. Se sijaitsee osoitteessa Eeronkuja 3 B, 21200 Raisio  ja
+                    löytyy pääovien läheisestä aulatilasta.
+                </p>
 
-</body>
-{% endblock %}
+                <a href="{% url 'create_booking' %}">Varaa tila</a>
+                
+                <p>Tila on Rasekon opiskelijoiden ja henkilökunnan varattavissa toimipisteen normaaleina aukioloaikoina. <br> 
+                    <br>
+                    
+                    Tilassa noudatetaan koulun sääntöjä.</p>
+             
+                <a href="https://www.raseko.fi/opiskelijan-opas/jarjestyssaanto/">Rasekon järjestyssääntö</a>
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+            </div>                                                                     
+        </div>
+    </body>
+
+    {% endblock %}
+
 </html>
-
-
-
-
-
-
-
-
-
-               
-
-</div>

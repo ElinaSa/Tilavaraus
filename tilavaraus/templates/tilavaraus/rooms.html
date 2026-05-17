@@ -1,1 +1,19 @@
-<h1>Tässä voisi esitellä huoneet</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fi">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Huoneista{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'tilavaraus/css/style.css' %}"> 
+    </head>
+ 
+    <body>
+        <div class="container-rooms">
+            <h1>Virtuaalihuone 1</h1>
+            <p>Tässä tekstiä huoneen ominaisuuksista ja vaikkapa säännöistä</p>
+        </div>
+    </body>
+
+</html> 
