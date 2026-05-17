@@ -32,8 +32,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # TODO: Vaihda tuotantoon false
 DEBUG = False
 
-ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
-# TODO: Tarkista Renderin yhteysessä tämä ALLOWED_HOSTS = ['taskplanner-elinasa.onrender.com']
+#ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
+# TODO: Tarkista Renderin yhteysessä tämä 
+ALLOWED_HOSTS = ['tilavaraus.onrender.com']
 
 
 # Application definition
