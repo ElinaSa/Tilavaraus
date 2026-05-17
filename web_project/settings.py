@@ -34,7 +34,8 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.getenv(
         'ALLOWED_HOSTS',
-        '127.0.0.1, localhost'
+        '127.0.0.1, localhost',
+        'tilavaraus.onrender.com'
     ).split(',')
 ]
 
