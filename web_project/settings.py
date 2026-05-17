@@ -30,18 +30,18 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # Kehitysvaiheessa true
 DEBUG = os.getenv('DEBUG','False')=='True'
 
-ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.getenv(
-        'ALLOWED_HOSTS',
-        '127.0.0.1, localhost',
-        'tilavaraus.onrender.com'
-    ).split(',')
-]
+# ALLOWED_HOSTS = [
+#     host.strip()
+#     for host in os.getenv(
+#         'ALLOWED_HOSTS',
+#         '127.0.0.1, localhost',
+#         'tilavaraus.onrender.com'
+#     ).split(',')
+# ]
 
 #ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 # TODO: Tarkista Renderin yhteydessä tämä 
-#ALLOWED_HOSTS = ['tilavaraus.onrender.com']
+ALLOWED_HOSTS = ['tilavaraus.onrender.com']
 
 # ALLOWED_HOSTS = [
 #     'tilavaraus.onrender.com',
