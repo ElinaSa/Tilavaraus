@@ -19,7 +19,7 @@ Django-projektin pohjan voi luoda komennolla `django-admin startproject projekti
 
 Migraatioiden tekemiseen käytetään komentoja `python manage.py makemigrations` ja `python manage.py migrate`.
 
-Projektin käynnistys tapahtuu komennolla `python manage.py runserver`.
+Serverin käynnistys kehitysvaiheessa tapahtuu komennolla `python manage.py runserver`.
 
 PostgreSQL-ajurin asentaminen suoritetaan komennolla `pip install psycopg2-binary`.
 
