@@ -49,9 +49,21 @@ ALLOWED_HOSTS = ['tilavaraus.onrender.com']
 #     '127.0.0.1',
 # ]
 
+# Turvallisuusasetukset tuotantoon mennessä
+# TODO: tarkista ovatko kaikki tarpeellisia
+SECURE_SSL_REDIRECT = not DEBUG
+
+SESSION_COOKIE_SECURE = not DEBUG
+
+CSRF_COOKIE_SECURE = not DEBUG
+
+SECURE_HSTS_SECONDS = 0 if DEBUG else 31536000
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
-# TODO: tarkista tarvitaanko corsheaders ja drf_yasg
+# TODO: tarkista tarvitaanko corsheaders
+# TODO: lisää drf_yasg API dokumentaatiota varten
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -176,4 +188,5 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.BasicAuthentication",
     ],
+
 }
