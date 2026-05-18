@@ -27,10 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# Kehitysvaiheessa true
+# Kehitysvaiheessa .envissä true
 DEBUG = os.getenv('DEBUG','False')=='True'
-# TODO: Vaihda tuotantoon false
-# DEBUG = False
+
 
 ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 # TODO: Tarkista Renderin yhteysessä tämä ALLOWED_HOSTS = ['taskplanner-elinasa.onrender.com']
@@ -51,10 +50,10 @@ INSTALLED_APPS = [
     'tilavaraus',
     ]
 
-# Huom! Middelwaressa whitenoisen oltava heti alussa securityn jälkeen
+# Huom! Tuotannossa Middelwaressa whitenoisen oltava heti alussa securityn jälkeen 
+# 'whitenoise.middleware.WhiteNoiseMiddleware', 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'web_project.wsgi.application'
+# WSGI_APPLICATION = 'web_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
