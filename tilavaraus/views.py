@@ -5,9 +5,40 @@ from .forms import BookingForm, BookingEditForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
+from rest_framework import generics, viewsets
+from .serializers import SpaceSerializer, BookingSerializer
 from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
+class SpaceListAPI(generics.ListAPIView):
+    """
+    Varausten hallinta-API: varattavien tilojen listaus
+    """
+    queryset = Space.objects.all()
+    serializer_class = SpaceSerializer
+    permission_classes = [IsAuthenticated]
+
+class BookingListAPI(generics.ListCreateAPIView): #viewsets.ReadOnlyModelViewSet
+    """
+    Varausten hallinta-API: tehtävien listaus ja lisääminen
+    """
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff or user.is_superuser:
+            return Booking.objects.all()
+        return Booking.objects.filter(user=user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class BookingDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
+    
 
 @login_required
 def home(request):

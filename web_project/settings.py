@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'tilavaraus',
+    'drf_yasg',
     ]
 
 # Huom! Tuotannossa Middelwaressa whitenoisen oltava heti alussa securityn jälkeen 
