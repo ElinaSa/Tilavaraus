@@ -28,9 +28,9 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Kehitysvaiheessa true
-# DEBUG = os.getenv('DEBUG','False')=='True'
+DEBUG = os.getenv('DEBUG','False')=='True'
 # TODO: Vaihda tuotantoon false
-DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 # TODO: Tarkista Renderin yhteysessä tämä ALLOWED_HOSTS = ['taskplanner-elinasa.onrender.com']
