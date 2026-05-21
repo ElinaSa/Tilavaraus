@@ -1,6 +1,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Booking, Space
+from django.utils import timezone
+from datetime import datetime
 
 # Lomake varauksen tekemiseksi
 class BookingForm(forms.ModelForm):
@@ -19,10 +21,23 @@ class BookingForm(forms.ModelForm):
 
         if not date or not begins or not ends or not room:
             return cleaned_data
+        
+        # Menneen ajan esto
+        booking_datetime = datetime.combine(date, begins)
+
+        if timezone.is_naive(booking_datetime):
+            booking_datetime = timezone.make_aware(
+                booking_datetime,
+                timezone.get_current_timezone()
+            )
+
+        if booking_datetime < timezone.now():
+            raise ValidationError("Varausta ei voi tehdä menneelle ajalle.")
             
         if begins >= ends:
             raise ValidationError("Päättymisaika ei voi olla ennen alkamisaikaa.")
             
+        # Päällekkäisten aikojen tarkistus
         overlapping = Booking.objects.filter(
             room = room,
             date = date,
