@@ -4,10 +4,40 @@ from .models import Space, Booking
 from .forms import BookingForm, BookingEditForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-
+from rest_framework import generics, viewsets
+from .serializers import SpaceSerializer, BookingSerializer
 from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
+class SpaceListAPI(generics.ListAPIView):
+    """
+    Varausten hallinta-API: varattavien tilojen listaus
+    """
+    queryset = Space.objects.all()
+    serializer_class = SpaceSerializer
+    permission_classes = [IsAuthenticated]
+
+class BookingListAPI(generics.ListCreateAPIView): #viewsets.ReadOnlyModelViewSet
+    """
+    Varausten hallinta-API: tehtävien listaus ja lisääminen
+    """
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff or user.is_superuser:
+            return Booking.objects.all()
+        return Booking.objects.filter(user=user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class BookingDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated]
+    
 
 @login_required
 def home(request):
@@ -71,8 +101,7 @@ def create_booking(request):
         form = BookingForm()
 
     return render(request, 'tilavaraus/create_booking.html', {'form': form})
-# TODO:Tarkista onko create_bookin oikea osoite tässä
- 
+
 @login_required
 def edit_booking(request, pk):
 
@@ -117,12 +146,3 @@ def booking_detail(request,bookingID):
 @login_required
 def new_reservation(request):
     return HttpResponse("Tässä uusin varaus")
-
-# @login_required
-# def booking_list(request):
-    # return HttpResponse("Tässä näkyvät varaukset")
-    # reservations=Reservation.objects.all()
-    # return render(request, 'tilavaraus/booking_list.html',{'reservations':reservations})
-
-# def booking_detail(request, booking_id):
-    # return HttpResponse(f"Varauksen ID: {booking_id}")

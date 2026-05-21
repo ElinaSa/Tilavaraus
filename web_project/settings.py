@@ -63,7 +63,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
 # TODO: tarkista tarvitaanko corsheaders
-# TODO: lisää drf_yasg API dokumentaatiota varten
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -75,6 +74,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'tilavaraus',
+    'drf_yasg',
     ]
 
 # Huom! Middelwaressa whitenoisen oltava heti alussa securityn jälkeen
