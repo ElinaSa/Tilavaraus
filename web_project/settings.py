@@ -36,7 +36,7 @@ ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 
 
 # Application definition
-# TODO: tarkista tarvitaanko corsheaders ja drf_yasg
+# TODO: tarkista tarvitaanko corsheaders 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
