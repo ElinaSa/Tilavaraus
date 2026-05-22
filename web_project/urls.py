@@ -16,23 +16,49 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
-from tilavaraus import views
+#from django.contrib.auth import views as auth_views
+#from tilavaraus import views
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
+# TODO: tarkista näiden kolmen sisältä ja oikea paikka
+
+from django.views.generic import RedirectView
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Rajapintadokumentaatio",
+      default_version='v1',
+      description="Tilavarauksen API",
+      terms_of_service="https://google.com/policies/terms/",
+      contact=openapi.Contact(email="contact@tilavaraus.local"),
+      license=openapi.License(name="BSD License"),
+   ),
+   
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
+
+# TODO: tarkista kommentiksi muutetut auth.viewsit ja viewsit kumpaan urlspatternsiin kuuluu!
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('testi/', auth_views.LoginView.as_view(template_name='tilavaraus/testi.html'),name='test'),
-    path('base/', auth_views.LoginView.as_view(template_name='tilavaraus/base.html'),name='base'),
-    path('home/', auth_views.LoginView.as_view(template_name='tilavaraus/home.html'),name='home'),
-    path('reservations/', auth_views.LoginView.as_view(template_name='tilavaraus/reservations.html'),name='reservations'),
     path('', include('tilavaraus.urls')), 
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'),name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/login/'),name='logout'),
-    path('booking_list/', views.booking_list, name='booking_list'),
-    path('booking_detail/<int:bookingID>/',views.booking_detail, name='booking_detail'),
-    path('reservations/new/', views.create_booking, name='create_booking'),
-    path('edit_booking/<int:pk>/', views.edit_booking, name='edit_booking'),
-    path('delete_booking/<int:pk>/', views.delete_booking, name='delete_booking'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), 
+    
+    #path('testi/', auth_views.LoginView.as_view(template_name='tilavaraus/testi.html'),name='test'),
+    #path('base/', auth_views.LoginView.as_view(template_name='tilavaraus/base.html'),name='base'),
+    #path('home/', auth_views.LoginView.as_view(template_name='tilavaraus/home.html'),name='home'),
+    #path('reservations/', auth_views.LoginView.as_view(template_name='tilavaraus/reservations.html'),name='reservations'),
+    
+    # path('accounts/', include('django.contrib.auth.urls')),
+    # path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'),name='login'),
+    # path('logout/', auth_views.LogoutView.as_view(next_page='/login/'),name='logout'),
+    # path('booking_list/', views.booking_list, name='booking_list'),
+    # path('booking_detail/<int:bookingID>/',views.booking_detail, name='booking_detail'),
+    # path('reservations/new/', views.create_booking, name='create_booking'),
+    # path('edit_booking/<int:pk>/', views.edit_booking, name='edit_booking'),
+    # path('delete_booking/<int:pk>/', views.delete_booking, name='delete_booking'),
                                
 ]

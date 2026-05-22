@@ -4,10 +4,21 @@ from .models import Space, Booking
 from .forms import BookingForm, BookingEditForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from rest_framework import generics, viewsets
+from rest_framework import generics
 from .serializers import SpaceSerializer, BookingSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
+class TestAPIView(APIView):
+    """
+    API-testi
+    """
+    def get(self, request):
+        return Response({
+            "message": "Swagger toimii"
+        })
+    
 class SpaceListAPI(generics.ListAPIView):
     """
     Varausten hallinta-API: varattavien tilojen listaus

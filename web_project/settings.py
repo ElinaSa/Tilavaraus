@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Lataa ympäristömuuttujat .env-tiedostosta
@@ -30,18 +31,17 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # Kehitysvaiheessa .envissä true, tuotannossa false
 DEBUG = os.getenv('DEBUG','False')=='True'
 
-# ALLOWED_HOSTS = [
-#     host.strip()
-#     for host in os.getenv(
-#         'ALLOWED_HOSTS',
-#         '127.0.0.1, localhost',
-#         'tilavaraus.onrender.com'
-#     ).split(',')
-# ]
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv(
+        'ALLOWED_HOSTS',
+        '127.0.0.1 localhost',
+    ).split(',')
+]
 
 #ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 # TODO: Tarkista Renderin yhteydessä tämä 
-ALLOWED_HOSTS = ['tilavaraus.onrender.com']
+#ALLOWED_HOSTS = ['tilavaraus.onrender.com']
 
 # ALLOWED_HOSTS = [
 #     'tilavaraus.onrender.com',
@@ -64,17 +64,23 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 # TODO: tarkista tarvitaanko corsheaders
 INSTALLED_APPS = [
+    # Djangon sovellukset
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'whitenoise.runserver_nostatic',
+
+    # Kolmannen osapuolen sovellukset
     'rest_framework',
-    'rest_framework.authtoken',
-    'tilavaraus',
     'drf_yasg',
+    'whitenoise.runserver_nostatic',
+    # TODO: tarkista authtokenin tarpeellisuus ja sijainti
+    'rest_framework.authtoken',
+
+    # Paikalliset sovellukset
+    'tilavaraus',  
     ]
 
 # Huom! Middelwaressa whitenoisen oltava heti alussa securityn jälkeen
@@ -87,7 +93,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'web_project.urls'
@@ -99,6 +104,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # 'django.template.context_processors.debug',?
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -189,3 +195,9 @@ REST_FRAMEWORK = {
     ],
 
 }
+
+# TODO: katso on ko cors tarpeellinen tässä projekstissa, esim kopioitu
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:5173",  # React frontend (Vite)
+#     "http://127.0.0.1:5173",  # Try adding this too
+# ]
