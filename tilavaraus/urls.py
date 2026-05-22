@@ -6,7 +6,7 @@ from .views import home, login, logout, reservations, booking_list, booking_deta
 
 
 
-
+# Endpoints
 urlpatterns = [
     path('',home, name='home'),
     path('',login,name='login'),
@@ -22,7 +22,7 @@ urlpatterns = [
     path("api/space/",SpaceListAPI.as_view(),name="space_list_api"),
     path("api/booking/",BookingListAPI.as_view(),name="booking_list_api"),
     path("api/booking/<int:pk>",BookingDetailAPI.as_view(),name="booking_detail_api"),
-    path('test/', TestAPIView.as_view())
+    path('test/', TestAPIView.as_view(),name='test-api'),
     
 
 
