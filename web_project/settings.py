@@ -43,7 +43,7 @@ DEBUG = os.getenv('DEBUG','False')=='True'
 
 #ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 # TODO: Tarkista Renderin yhteydessä tämä 
-ALLOWED_HOSTS = ['tilavaraus-elinasa.onrender.com']
+ALLOWED_HOSTS = ['tilavaraus-elinasa.onrender.com','127.0.0.1 localhost']
 
 # ALLOWED_HOSTS = [
 #     'tilavaraus.onrender.com',
