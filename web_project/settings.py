@@ -121,10 +121,11 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES={
-    'default':dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default':dj_database_url.config(default=os.getenv('DATABASE_URL')),
 }
 # DATABASES = {
 #     'default': {
+
        
 #         'ENGINE': os.getenv('DB_ENGINE'),
 #         'NAME' : os.getenv('DB_NAME'),
