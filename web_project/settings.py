@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 #     'default':dj_database_url.config(default=os.getenv('DATABASE_URL')),
 # }
 DATABASES = {
-    'default': {
+    'default': 
 
         dj_database_url.config(default=os.getenv('DATABASE_URL')),
         # 'ENGINE': os.getenv('DB_ENGINE'),
@@ -133,7 +133,7 @@ DATABASES = {
         # 'PASSWORD' : os.getenv('DB_PASSWORD'),
         # 'HOST' : os.getenv('DB_HOST'),
         # 'PORT' : os.getenv('DB_PORT'), 
-    }
+    
 }
 print(os.getenv('DB_ENGINE'))
 
