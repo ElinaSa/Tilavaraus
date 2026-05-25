@@ -1,16 +1,15 @@
 from django.urls import path
 from . import views
-from .views import home, login, logout, reservations, booking_list, booking_detail, create_booking, new_reservation, edit_booking, delete_booking
-from .views import SpaceListAPI, BookingListAPI, BookingDetailAPI, TestAPIView
+from .views import home, login, logout, reservations, booking_list, booking_detail, create_booking, new_reservation, edit_booking, delete_booking, SpaceListAPI, BookingListAPI, BookingDetailAPI, TestAPIView
 
 
 
 
 # Endpoints
 urlpatterns = [
-    #path('', index, name='index'),
+    
     #path('',home, name='home'),
-    path('',login,name='login'),
+    path('',views.login,name='login'),
     #path('',logout,name='logout'),
     #path('',testi,name='testi'),
     
