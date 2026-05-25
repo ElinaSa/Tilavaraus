@@ -43,7 +43,7 @@ DEBUG = os.getenv('DEBUG','False')=='True'
 
 #ALLOWED_HOSTS = tuple(os.getenv('ALLOWED_HOSTS','127.0.0.1 localhost').split())
 # TODO: Tarkista Renderin yhteydessä tämä 
-ALLOWED_HOSTS = ['tilavaraus-elinasa.onrender.com','127.0.0.1 localhost']
+ALLOWED_HOSTS = ['tilavaraus.onrender.com','127.0.0.1 localhost']
 
 # ALLOWED_HOSTS = [
 #     'tilavaraus.onrender.com',
@@ -52,6 +52,11 @@ ALLOWED_HOSTS = ['tilavaraus-elinasa.onrender.com','127.0.0.1 localhost']
 # ]
 
 # Turvallisuusasetukset tuotantoon mennessä
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://tilavaraus.onrender.com'
+]
+
 # TODO: tarkista ovatko kaikki tarpeellisia
 SECURE_SSL_REDIRECT = not DEBUG
 
@@ -177,8 +182,10 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#TODO tarkista mikä on oikea login_redirect_url tässä, reservation alkuperäinen
 # Where user is redirected after login/logout and which url to use for login
 LOGIN_REDIRECT_URL='/reservations/' 
+#LOGIN_REDIRECT_URL='/' 
 LOGOUT_REDIRECT_URL='/login/'
 LOGIN_URL='/login/'
 

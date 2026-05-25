@@ -52,9 +52,6 @@ class BookingDetailAPI(generics.RetrieveUpdateDestroyAPIView):
 
 @login_required
 
-def index(request):
-    return render(request, 'index.html')
-
 def home(request):
     
     # return redirect('home') 
@@ -77,7 +74,7 @@ def testi(request):
 def reservations(request):
     return redirect('reservations')
 
-@login_required
+#@login_required
 # def booking(request):
     # return redirect('new_reservation')
 
