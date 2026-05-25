@@ -107,7 +107,7 @@ ROOT_URLCONF = 'web_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,8 +129,14 @@ WSGI_APPLICATION = 'web_project.wsgi.application'
 #     'default':dj_database_url.config(default=os.getenv('DATABASE_URL')),
 # }
 DATABASES = {
-    'default':dj_database_url.config(default=os.getenv('DATABASE_URL')),
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    ),
 }
+
+# DATABASES = {
+#     'default':dj_database_url.config(default=os.getenv('DATABASE_URL')),
+# }
 print(os.getenv('DATABASE_URL'))
 #print(os.getenv('DB_ENGINE'))
 
