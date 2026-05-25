@@ -42,7 +42,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tilavaraus.urls')), 
-    path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'), name='login'),
+    #path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'), name='login'),
     path('api/', include('tilavaraus.urls')),
 
     
