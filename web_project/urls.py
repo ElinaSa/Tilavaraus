@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
+#from django.contrib.auth import views as auth_views
 from django.urls import path, include
 # TODO: tarkista näiden kolmen sisältä ja oikea paikka
 #from django.contrib.auth import views as auth_views
@@ -41,9 +41,10 @@ schema_view = get_schema_view(
 # TODO: tarkista kommentiksi muutetut auth.viewsit ja viewsit kumpaan urlspatternsiin kuuluu!
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', include('tilavaraus.urls')), 
-    path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'), name='login'),
+    path('', include('tilavaraus.urls')), 
+    #path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'), name='login'),
     path('api/', include('tilavaraus.urls')),
+    
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), 
     

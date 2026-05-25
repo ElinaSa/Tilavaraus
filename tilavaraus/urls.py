@@ -9,7 +9,7 @@ from .views import home, login, logout, reservations, booking_list, booking_deta
 urlpatterns = [
     
     #path('',home, name='home'),
-    path('',views.login,name='login'),
+    path('',login,name='login'),
     #path('',logout,name='logout'),
     #path('',testi,name='testi'),
     
