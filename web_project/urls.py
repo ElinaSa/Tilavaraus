@@ -43,7 +43,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tilavaraus.urls')), 
     #path('login/', auth_views.LoginView.as_view(template_name='tilavaraus/login.html'), name='login'),
-    path('api/', include('tilavaraus.urls')),
+    #path('api/', include('tilavaraus.urls')),
 
     
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
