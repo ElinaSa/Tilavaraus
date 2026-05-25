@@ -50,11 +50,11 @@ class BookingDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     
 
-#@login_required
-#def home(request):
+@login_required
+def home(request):
     
     # return redirect('home') 
-    #return redirect('login')
+    return redirect('login')
     # TODO: Tässä home aiheuttaa virheen
     
 #@login_required
