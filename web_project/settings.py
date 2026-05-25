@@ -173,9 +173,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #TODO tarkista mikä on oikea login_redirect_url tässä, reservation alkuperäinen
 # Where user is redirected after login/logout and which url to use for login
 LOGIN_REDIRECT_URL='/reservations/' 
-#LOGIN_REDIRECT_URL='/' 
 LOGOUT_REDIRECT_URL='/login/'
-LOGIN_URL='/'
+LOGIN_URL='/login/'
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
