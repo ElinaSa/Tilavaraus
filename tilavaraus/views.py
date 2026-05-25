@@ -50,7 +50,7 @@ class BookingDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     
 
-@login_required
+#@login_required
 def home(request):
     
     # return redirect('home') 
